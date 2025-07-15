@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cauz | Freelance Portfolio</title>
+  <style>
+    :root {
+      --primary: #00ffd5;
+      --bg-dark: #0f0f0f;
+      --bg-darker: #1c1c2b;
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+      color: #ffffff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    header {
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      animation: fadeSlideIn 1s ease-out;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      animation: float 3s ease-in-out infinite;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+    main {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+    section {
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease forwards;
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--primary);
+    }
+    .service-box {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 255, 213, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 255, 213, 0.2);
+    }
+    a {
+      text-decoration: none;
+    }
+    .fancy-link, .fancy-discord {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      margin: 0.4rem 0;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .fancy-link {
+      background: var(--primary);
+      color: #0f0f0f;
+    }
+    .fancy-link:hover {
+      background: #00cbbf;
+      transform: translateY(-3px);
+    }
+    .fancy-discord {
+      background: linear-gradient(135deg, #7289da, #99aab5);
+      color: #fff;
+    }
+    .fancy-discord:hover {
+      background: linear-gradient(135deg, #5b6eae, #7f8fa3);
+      transform: translateY(-3px);
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      background: rgba(26, 26, 26, 0.6);
+      backdrop-filter: blur(8px);
+      color: #aaa;
+      animation: fadeSlideIn 2s ease-out;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes fadeSlideIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cauz - Freelance Services</h1>
+    <p>Affordable. Reliable. Fast.</p>
+  </header>
+  <main>
+    <section>
+      <h2>About Me</h2>
+      <p>I’m an 18 y/o freelancer offering services like Discord server management, lead generation, Instagram reels, web development and more. I work smart, fast, and on-budget. Let’s build something cool together.</p>
+    </section>
+    <section>
+      <h2>Services</h2>
+      <div class="service-box">🎛️ <strong>Discord Server Setup & Moderation</strong><br />I can create, organize, and maintain your server with role hierarchies, permission control, bots, and automation. I keep communities safe and active with daily moderation.</div>
+      <div class="service-box">📈 <strong>Lead Generation (custom niche)</strong><br />I research and gather high-quality leads based on your target industry or location using modern tools and manual techniques, verified and formatted to be campaign-ready.</div>
+      <div class="service-box">🎬 <strong>Instagram Reels Editing</strong><br />I make engaging short-form videos using trending formats, captions, TTS voices, and visual effects. Perfect for growing Instagram, TikTok, or YouTube accounts organically.</div>
+      <div class="service-box">🧠 <strong>Social Media Content Research</strong><br />I track trends, hashtags, and viral content in your niche to help you plan high-performing posts. Great for content creators, coaches, and small businesses.</div>
+      <div class="service-box">🖼️ <strong>Thumbnail/Banner Design</strong><br />I design simple, clean visuals for YouTube thumbnails, Discord banners, Instagram highlights, and more using basic design tools for quick delivery.</div>
+      <div class="service-box">💻 <strong>Web Development</strong><br />I build responsive and modern websites using HTML, CSS, JavaScript, and React. From landing pages to dynamic web apps, I write clean and functional code tailored to your goals.</div>
+    </section>
+    <section>
+      <h2>Portfolio & Work</h2>
+      <p>📩 DM me if you'd like to see my portfolio or work history — happy to share!</p>
+    </section>
+    <section>
+      <h2>Contact Me</h2>
+      <p><a href="mailto:urcauzz@gmail.com" class="fancy-link">📨 Email Me</a></p>
+      <p><a href="https://discord.com/users/ur_cauz" class="fancy-discord" target="_blank">💬 Message Me on Discord: ur_cauz</a></p>
+      <p><a href="https://buymeacoffee.com/cauz" class="fancy-link" target="_blank">☕ Support Me on BuyMeACoffee</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 Cauz. Built with 💻 for clients who value quality.
+  </footer>
+</body>
+</html>
