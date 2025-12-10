@@ -1,171 +1,648 @@
-se <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cauz | Freelance Portfolio</title>
   <style>
-    :root {
-      --primary: #00ffd5;
-      --bg-dark: #0f0f0f;
-      --bg-darker: #1c1c2b;
-      --card-bg: rgba(255, 255, 255, 0.05);
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+    
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--bg-dark), var(--bg-darker));
-      background-size: 400% 400%;
-      animation: gradientShift 20s ease infinite;
-      color: #ffffff;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-    header {
-      padding: 3rem 1rem 2rem;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      animation: fadeSlideIn 1s ease-out;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      animation: float 3s ease-in-out infinite;
-    }
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-      color: #ccc;
-    }
-    main {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-    section {
-      margin-bottom: 3rem;
-      animation: fadeInUp 1s ease forwards;
-    }
-    h2 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-      text-shadow: 0 0 10px var(--primary);
-    }
-    .service-box {
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 15px rgba(0, 255, 213, 0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .service-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(0, 255, 213, 0.2);
-    }
-    a {
-      text-decoration: none;
-    }
-    .fancy-link, .fancy-discord {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      margin: 0.4rem 0;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-    .fancy-link {
-      background: var(--primary);
-      color: #0f0f0f;
-    }
-    .fancy-link:hover {
-      background: #00cbbf;
-      transform: translateY(-3px);
-    }
-    .fancy-discord {
-      background: linear-gradient(135deg, #7289da, #99aab5);
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0f;
       color: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%23667eea" opacity="0.5"/></svg>'), auto;
     }
-    .fancy-discord:hover {
-      background: linear-gradient(135deg, #5b6eae, #7f8fa3);
-      transform: translateY(-3px);
+    
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: radial-gradient(ellipse at top, #1a0f2e 0%, #0a0a0f 50%);
+      overflow: hidden;
     }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      background: rgba(26, 26, 26, 0.6);
-      backdrop-filter: blur(8px);
-      color: #aaa;
-      animation: fadeSlideIn 2s ease-out;
+    
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(120, 50, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(50, 200, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 50, 150, 0.1) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
     }
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    
+    .grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+      animation: gridScroll 20s linear infinite;
     }
+    
+    @keyframes gridScroll {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(50px); }
+    }
+    
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
+      z-index: 999;
+      animation: scanlineMove 8s linear infinite;
+    }
+    
+    @keyframes scanlineMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100%); }
+    }
+    
     @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      33% { transform: translate(30px, -30px) rotate(120deg); }
+      66% { transform: translate(-20px, 20px) rotate(240deg); }
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    header {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent) 1;
+      animation: slideDown 0.8s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+      animation: shine 3s infinite;
+    }
+    
+    @keyframes shine {
+      0% { left: -100%; }
+      50%, 100% { left: 200%; }
+    }
+    
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    header h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      font-family: 'Space Mono', monospace;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      animation: glowPulse 3s ease-in-out infinite, textGlitch 5s infinite;
+      position: relative;
+      text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+      letter-spacing: 8px;
+    }
+    
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
+      50% { filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8)); }
+    }
+    
+    @keyframes textGlitch {
+      0%, 90%, 100% { transform: translate(0); }
+      92% { transform: translate(-2px, 2px); }
+      94% { transform: translate(2px, -2px); }
+      96% { transform: translate(-2px, -2px); }
+      98% { transform: translate(2px, 2px); }
+    }
+    
+    header p {
+      font-size: 1.3rem;
+      color: #a0a0b0;
+      font-weight: 500;
+      letter-spacing: 4px;
+      font-family: 'Space Mono', monospace;
+      animation: fadeInLetters 1s ease-out;
+    }
+    
+    @keyframes fadeInLetters {
+      from { opacity: 0; letter-spacing: 20px; }
+      to { opacity: 1; letter-spacing: 4px; }
+    }
+    
+    main {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    section:nth-child(1) { animation-delay: 0.2s; }
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.6s; }
+    section:nth-child(4) { animation-delay: 0.8s; }
+    
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(30px); }
+    }
+    
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      background: linear-gradient(90deg, #fff, #a0a0b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+      animation: expandLine 0.6s ease-out, neonGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes expandLine {
+      from { width: 0; }
+      to { width: 60px; }
+    }
+    
+    @keyframes neonGlow {
+      0%, 100% { box-shadow: 0 0 5px #667eea, 0 0 10px #667eea; }
+      50% { box-shadow: 0 0 10px #764ba2, 0 0 20px #764ba2, 0 0 30px #764ba2; }
+    }
+    
+    .about-text {
+      font-size: 1.2rem;
+      color: #c0c0d0;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      animation: typewriter 2s steps(80) forwards;
+      overflow: hidden;
+      border-right: 2px solid #667eea;
+      white-space: nowrap;
+      animation: typewriter 2s steps(80) 0.5s forwards, blink 0.8s step-end infinite;
+    }
+    
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; white-space: normal; border-right: none; }
+    }
+    
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .service-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: cardFloat 3s ease-in-out infinite;
+    }
+    
+    .service-card:nth-child(1) { animation-delay: 0s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.4s; }
+    .service-card:nth-child(4) { animation-delay: 0.6s; }
+    .service-card:nth-child(5) { animation-delay: 0.8s; }
+    .service-card:nth-child(6) { animation-delay: 1s; }
+    .service-card:nth-child(7) { animation-delay: 1.2s; }
+    .service-card:nth-child(8) { animation-delay: 1.4s; }
+    
+    @keyframes cardFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-5px); }
     }
-    @keyframes fadeSlideIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+      opacity: 0;
+      transition: opacity 0.4s;
     }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      transform: rotate(45deg);
+      animation: cardShine 4s linear infinite;
+    }
+    
+    @keyframes cardShine {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    .service-card:hover::before {
+      opacity: 1;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: rgba(102, 126, 234, 0.5);
+      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3),
+                  0 0 0 2px rgba(102, 126, 234, 0.2);
+      animation: none;
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: iconBounce 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+    }
+    
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-10px) rotate(-5deg); }
+      75% { transform: translateY(-5px) rotate(5deg); }
+    }
+    
+    .service-card:hover .service-icon {
+      animation: iconSpin 0.6s ease-in-out, iconPulse 0.6s ease-in-out infinite;
+    }
+    
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.3); }
+      100% { transform: rotate(360deg) scale(1); }
+    }
+    
+    @keyframes iconPulse {
+      0%, 100% { filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5)); }
+      50% { filter: drop-shadow(0 0 25px rgba(118, 75, 162, 1)); }
+    }
+    
+    .service-card h3 {
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .service-card p {
+      color: #a0a0b0;
+      font-size: 1rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cta-section {
+      text-align: center;
+      padding: 3rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 3rem 0;
+      position: relative;
+      overflow: hidden;
+      animation: sectionPulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes sectionPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.1); }
+      50% { box-shadow: 0 0 40px rgba(118, 75, 162, 0.3); }
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+      animation: ctaShine 3s infinite;
+    }
+    
+    @keyframes ctaShine {
+      0% { left: -100%; }
+      50%, 100% { left: 200%; }
+    }
+    
+    .cta-section p {
+      font-size: 1.3rem;
+      color: #c0c0d0;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Space Mono', monospace;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn::after {
+      content: '→';
+      position: absolute;
+      right: 1rem;
+      opacity: 0;
+      transition: all 0.3s;
+    }
+    
+    .btn:hover::after {
+      opacity: 1;
+      right: 0.5rem;
+    }
+    
+    .btn span {
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s;
+    }
+    
+    .btn:hover span {
+      transform: translateX(-8px);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      animation: buttonGlow 2s ease-in-out infinite;
+    }
+    
+    @keyframes buttonGlow {
+      0%, 100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); }
+      50% { box-shadow: 0 10px 40px rgba(118, 75, 162, 0.5), 0 0 20px rgba(118, 75, 162, 0.3); }
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+      animation: none;
+    }
+    
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-3px) scale(1.05);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
+      border-top: 2px solid transparent;
+      border-image: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent) 1;
+      color: #707080;
+      font-size: 1rem;
+      font-family: 'Space Mono', monospace;
+      animation: footerFlicker 3s ease-in-out infinite;
+    }
+    
+    @keyframes footerFlicker {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5rem; letter-spacing: 4px; }
+      h2 { font-size: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact-buttons { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .about-text { animation: none; white-space: normal; border-right: none; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Cauz - Freelance Services</h1>
-    <p>Affordable. Reliable. Fast.</p>
-  </header>
-  <main>
-    <section>
-      <h2>About Me</h2>
-      <p>I’m a freelancer offering services like Discord server management, lead generation, Instagram reels, web development and more. I work smart, fast, and on-budget. Let’s build something cool together.</p>
-      <h2>Services</h2>
-      <div class="service-box">🎛️ <strong>Discord Server Setup & Moderation</strong><br />I can create, organize, and maintain your server with role hierarchies, permission control, bots, and automation. I keep communities safe and active with daily moderation.</div>
-      <div class="service-box">📈 <strong>Lead Generation (custom niche)</strong><br />I research and gather high-quality leads based on your target industry or location using modern tools and manual techniques, verified and formatted to be campaign-ready.</div>
-      <div class="service-box">🎬 <strong>Instagram Reels Editing</strong><br />I make engaging short-form videos using trending formats, captions, TTS voices, and visual effects. Perfect for growing Instagram, TikTok, or YouTube accounts organically.</div>
-      <div class="service-box">🧠 <strong>Social Media Content Research</strong><br />I track trends, hashtags, and viral content in your niche to help you plan high-performing posts. Great for content creators, coaches, and small businesses.</div>
-      <div class="service-box">⭐<strong>Social Media Manager</strong><br />I manage your Socials, Precise and consistent throughout, for more reach and gaining more audiance.</div>
-      <div class="service-box">🖼️ <strong>Thumbnail/Banner Design</strong><br />I design simple, clean visuals for YouTube thumbnails, Discord banners, Instagram highlights, and more using basic design tools for quick delivery.</div>
-      <div class="service-box">🤖 <strong>Custom Discord Bot</strong><br />I code professional custom discord bot for servers, I host them for free if they are lightweight.</div>
-      <div class="service-box">💻 <strong>Web Development</strong><br />I build responsive and modern websites using HTML, CSS, JavaScript, and React. From landing pages to dynamic web apps, I write clean and functional code tailored to your goals.</div>
-    </section>
-    <section>
-      <h2>Portfolio & Work</h2>
-      <p>📩 DM me if you'd like to see my portfolio or work history — happy to share!</p>
-    </section>
-    <section>
-      <h2>Contact Me</h2>
-      <p><a href="mailto:urcauzz@gmail.com" class="fancy-link">📨 Email Me</a></p>
-      <p><a href="https://discord.com/users/ur_cauz" class="fancy-discord" target="_blank">💬 Message Me on Discord: ur_cauz</a></p>
-      <p><a href="https://github.com/urcauz" class="fancy-link" target="_blank">💻 My GitHub</a></p>
-      <p><a href="https://discord.gg/na94uFcJPM" class="fancy-discord" target="_blank">🌐 Join My Discord Server</a></p>
-      <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-<script>
-  kofiWidgetOverlay.draw('cauz', {
-    'type': 'floating-chat',
-    'floating-chat.donateButton.text': 'Support me',
-    'floating-chat.donateButton.background-color': '#00ffd5',
-    'floating-chat.donateButton.text-color': '#fff'
-  });
-</script>
-    </section>
-  </main>
-  <footer>
-    &copy; 2025 Cauz. Built with 💻 for clients who value quality.
-  </footer>
+  <div class="bg-animation"></div>
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+  
+  <div class="container">
+    <header>
+      <h1>[ CAUZ ]</h1>
+      <p>&lt; FREELANCE_SERVICES /&gt;</p>
+    </header>
+    
+    <main>
+      <section>
+        <h2>&gt; About_Me</h2>
+        <p class="about-text">Hey! I'm a freelancer specializing in Discord management, lead generation, Instagram reels, web development and more. I deliver quality work fast with fair pricing. Let's build something amazing together.</p>
+      </section>
+      
+      <section>
+        <h2>&gt; Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🎛️</div>
+            <h3>Discord Server Setup & Moderation</h3>
+            <p>Complete server setup with roles, bots, permissions, and automation. Daily moderation available to keep your community safe and active.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">📈</div>
+            <h3>Lead Generation</h3>
+            <p>High-quality leads tailored to your industry and location. Verified, formatted, and campaign-ready for immediate use.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🎬</div>
+            <h3>Instagram Reels Editing</h3>
+            <p>Engaging short-form videos with trending formats, captions, and effects. Perfect for Instagram, TikTok, and YouTube Shorts.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🧠</div>
+            <h3>Social Media Research</h3>
+            <p>Track trends, hashtags, and viral content in your niche to plan high-performing posts and grow your audience.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">⭐</div>
+            <h3>Social Media Management</h3>
+            <p>Consistent management across platforms for increased reach, engagement, and follower growth.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🖼️</div>
+            <h3>Thumbnail & Banner Design</h3>
+            <p>Eye-catching visuals for YouTube, Discord, Instagram and more. Clean designs with quick turnaround.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">🤖</div>
+            <h3>Custom Discord Bots</h3>
+            <p>Professional custom bots coded for your server needs. Free hosting included for lightweight bots.</p>
+          </div>
+          
+          <div class="service-card">
+            <div class="service-icon">💻</div>
+            <h3>Web Development</h3>
+            <p>Modern, responsive websites built with HTML, CSS, JavaScript, and React. From landing pages to full web apps.</p>
+          </div>
+        </div>
+      </section>
+      
+      <section>
+        <div class="cta-section">
+          <h2>&gt; Portfolio</h2>
+          <p>Want to see examples of my work? Send me a message and I'll share my portfolio with you!</p>
+        </div>
+      </section>
+      
+      <section>
+        <h2>&gt; Get_In_Touch</h2>
+        <div class="contact-buttons">
+          <a href="mailto:urcauzz@gmail.com" class="btn btn-primary">
+            <span>📨 Email Me</span>
+          </a>
+          <a href="https://discord.com/users/ur_cauz" class="btn btn-secondary" target="_blank">
+            <span>💬 Discord: ur_cauz</span>
+          </a>
+          <a href="https://github.com/urcauz" class="btn btn-secondary" target="_blank">
+            <span>💻 GitHub</span>
+          </a>
+          <a href="https://discord.gg/na94uFcJPM" class="btn btn-secondary" target="_blank">
+            <span>🌐 Join My Server</span>
+          </a>
+        </div>
+      </section>
+    </main>
+    
+    <footer>
+      [ © 2025 CAUZ ] // built_for_quality
+    </footer>
+  </div>
+  
+  <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+  <script>
+    kofiWidgetOverlay.draw('cauz', {
+      'type': 'floating-chat',
+      'floating-chat.donateButton.text': 'Support Me',
+      'floating-chat.donateButton.background-color': '#667eea',
+      'floating-chat.donateButton.text-color': '#fff'
+    });
+  </script>
 </body>
 </html>
