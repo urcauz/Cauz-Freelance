@@ -4,634 +4,726 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cauz | Freelance Portfolio</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap');
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #0a0a0f;
-      color: #fff;
-      overflow-x: hidden;
-      line-height: 1.6;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%23667eea" opacity="0.5"/></svg>'), auto;
-    }
-    
-    .bg-animation {
+    /* Terminal Popup Styles */
+    .terminal-popup {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      background: radial-gradient(ellipse at top, #1a0f2e 0%, #0a0a0f 50%);
-      overflow: hidden;
-    }
-    
-    .bg-animation::before {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(120, 50, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(50, 200, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(255, 50, 150, 0.1) 0%, transparent 50%);
-      animation: float 20s ease-in-out infinite;
-    }
-    
-    .grid-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: 
-        linear-gradient(rgba(102, 126, 234, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(102, 126, 234, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-      z-index: 0;
-      animation: gridScroll 20s linear infinite;
-    }
-    
-    @keyframes gridScroll {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(50px); }
-    }
-    
-    .scanline {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.03) 0px,
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-      pointer-events: none;
-      z-index: 999;
-      animation: scanlineMove 8s linear infinite;
-    }
-    
-    @keyframes scanlineMove {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(100%); }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      33% { transform: translate(30px, -30px) rotate(120deg); }
-      66% { transform: translate(-20px, 20px) rotate(240deg); }
-    }
-    
-    .container {
-      position: relative;
-      z-index: 1;
-    }
-    
-    header {
-      padding: 4rem 2rem;
-      text-align: center;
-      background: rgba(10, 10, 15, 0.8);
-      backdrop-filter: blur(20px);
-      border-bottom: 2px solid transparent;
-      border-image: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent) 1;
-      animation: slideDown 0.8s ease-out;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
-      animation: shine 3s infinite;
-    }
-    
-    @keyframes shine {
-      0% { left: -100%; }
-      50%, 100% { left: 200%; }
-    }
-    
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    header h1 {
-      font-size: 4.5rem;
-      font-weight: 800;
-      font-family: 'Space Mono', monospace;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 1rem;
-      animation: glowPulse 3s ease-in-out infinite, textGlitch 5s infinite;
-      position: relative;
-      text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
-      letter-spacing: 8px;
-    }
-    
-    @keyframes glowPulse {
-      0%, 100% { filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5)); }
-      50% { filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8)); }
-    }
-    
-    @keyframes textGlitch {
-      0%, 90%, 100% { transform: translate(0); }
-      92% { transform: translate(-2px, 2px); }
-      94% { transform: translate(2px, -2px); }
-      96% { transform: translate(-2px, -2px); }
-      98% { transform: translate(2px, 2px); }
-    }
-    
-    header p {
-      font-size: 1.3rem;
-      color: #a0a0b0;
-      font-weight: 500;
-      letter-spacing: 4px;
-      font-family: 'Space Mono', monospace;
-      animation: fadeInLetters 1s ease-out;
-    }
-    
-    @keyframes fadeInLetters {
-      from { opacity: 0; letter-spacing: 20px; }
-      to { opacity: 1; letter-spacing: 4px; }
-    }
-    
-    main {
-      max-width: 1100px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
-    
-    section {
-      margin-bottom: 4rem;
-      opacity: 0;
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-    
-    section:nth-child(1) { animation-delay: 0.2s; }
-    section:nth-child(2) { animation-delay: 0.4s; }
-    section:nth-child(3) { animation-delay: 0.6s; }
-    section:nth-child(4) { animation-delay: 0.8s; }
-    
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-      from { opacity: 0; transform: translateY(30px); }
-    }
-    
-    h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
-      background: linear-gradient(90deg, #fff, #a0a0b0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-    }
-    
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      border-radius: 2px;
-      animation: expandLine 0.6s ease-out, neonGlow 2s ease-in-out infinite;
-    }
-    
-    @keyframes expandLine {
-      from { width: 0; }
-      to { width: 60px; }
-    }
-    
-    @keyframes neonGlow {
-      0%, 100% { box-shadow: 0 0 5px #667eea, 0 0 10px #667eea; }
-      50% { box-shadow: 0 0 10px #764ba2, 0 0 20px #764ba2, 0 0 30px #764ba2; }
-    }
-    
-    .about-text {
-      font-size: 1.2rem;
-      color: #c0c0d0;
-      line-height: 1.8;
-      margin-bottom: 2rem;
-      animation: typewriter 2s steps(80) forwards;
-      overflow: hidden;
-      border-right: 2px solid #667eea;
-      white-space: nowrap;
-      animation: typewriter 2s steps(80) 0.5s forwards, blink 0.8s step-end infinite;
-    }
-    
-    @keyframes typewriter {
-      from { width: 0; }
-      to { width: 100%; white-space: normal; border-right: none; }
-    }
-    
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-    
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    
-    .service-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 2rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      animation: cardFloat 3s ease-in-out infinite;
-    }
-    
-    .service-card:nth-child(1) { animation-delay: 0s; }
-    .service-card:nth-child(2) { animation-delay: 0.2s; }
-    .service-card:nth-child(3) { animation-delay: 0.4s; }
-    .service-card:nth-child(4) { animation-delay: 0.6s; }
-    .service-card:nth-child(5) { animation-delay: 0.8s; }
-    .service-card:nth-child(6) { animation-delay: 1s; }
-    .service-card:nth-child(7) { animation-delay: 1.2s; }
-    .service-card:nth-child(8) { animation-delay: 1.4s; }
-    
-    @keyframes cardFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    
-    .service-card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-      transform: rotate(45deg);
-      animation: cardShine 4s linear infinite;
-    }
-    
-    @keyframes cardShine {
-      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
-    
-    .service-card:hover::before {
-      opacity: 1;
-    }
-    
-    .service-card:hover {
-      transform: translateY(-12px) scale(1.02);
-      border-color: rgba(102, 126, 234, 0.5);
-      box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3),
-                  0 0 0 2px rgba(102, 126, 234, 0.2);
-      animation: none;
-    }
-    
-    .service-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: inline-block;
-      animation: iconBounce 2s ease-in-out infinite;
-      filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
-    }
-    
-    @keyframes iconBounce {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-10px) rotate(-5deg); }
-      75% { transform: translateY(-5px) rotate(5deg); }
-    }
-    
-    .service-card:hover .service-icon {
-      animation: iconSpin 0.6s ease-in-out, iconPulse 0.6s ease-in-out infinite;
-    }
-    
-    @keyframes iconSpin {
-      0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(180deg) scale(1.3); }
-      100% { transform: rotate(360deg) scale(1); }
-    }
-    
-    @keyframes iconPulse {
-      0%, 100% { filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5)); }
-      50% { filter: drop-shadow(0 0 25px rgba(118, 75, 162, 1)); }
-    }
-    
-    .service-card h3 {
-      font-size: 1.4rem;
-      color: #fff;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .service-card p {
-      color: #a0a0b0;
-      font-size: 1rem;
-      line-height: 1.6;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .cta-section {
-      text-align: center;
-      padding: 3rem;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      margin: 3rem 0;
-      position: relative;
-      overflow: hidden;
-      animation: sectionPulse 4s ease-in-out infinite;
-    }
-    
-    @keyframes sectionPulse {
-      0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.1); }
-      50% { box-shadow: 0 0 40px rgba(118, 75, 162, 0.3); }
-    }
-    
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
-      animation: ctaShine 3s infinite;
-    }
-    
-    @keyframes ctaShine {
-      0% { left: -100%; }
-      50%, 100% { left: 200%; }
-    }
-    
-    .cta-section p {
-      font-size: 1.3rem;
-      color: #c0c0d0;
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 1rem 2rem;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      font-family: 'Space Mono', monospace;
-    }
-    
-    .btn::before {
-      content: '';
-      position: absolute;
       top: 50%;
       left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-    
-    .btn:hover::before {
-      width: 300px;
-      height: 300px;
-    }
-    
-    .btn::after {
-      content: '→';
-      position: absolute;
-      right: 1rem;
-      opacity: 0;
-      transition: all 0.3s;
-    }
-    
-    .btn:hover::after {
-      opacity: 1;
-      right: 0.5rem;
-    }
-    
-    .btn span {
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s;
-    }
-    
-    .btn:hover span {
-      transform: translateX(-8px);
-    }
-    
-    .btn-primary {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-      animation: buttonGlow 2s ease-in-out infinite;
-    }
-    
-    @keyframes buttonGlow {
-      0%, 100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); }
-      50% { box-shadow: 0 10px 40px rgba(118, 75, 162, 0.5), 0 0 20px rgba(118, 75, 162, 0.3); }
-    }
-    
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
-      animation: none;
-    }
-    
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.4);
-      transform: translateY(-3px) scale(1.05);
-    }
-    
-    footer {
-      text-align: center;
-      padding: 3rem 2rem;
-      background: rgba(10, 10, 15, 0.8);
+      transform: translate(-50%, -50%) scale(0.8);
+      width: 90%;
+      max-width: 700px;
+      height: 500px;
+      background: rgba(10, 10, 15, 0.98);
+      border: 2px solid #667eea;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      z-index: 10001;
+      display: none;
+      flex-direction: column;
       backdrop-filter: blur(20px);
-      border-top: 2px solid transparent;
-      border-image: linear-gradient(90deg, transparent, #667eea, #764ba2, transparent) 1;
-      color: #707080;
-      font-size: 1rem;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .terminal-popup.active {
+      display: flex;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .terminal-header {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.7rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+      border-radius: 12px 12px 0 0;
+    }
+    
+    .terminal-close-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5f56;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    .terminal-close-btn:hover {
+      transform: scale(1.3);
+    }
+    
+    .terminal-output {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
       font-family: 'Space Mono', monospace;
-      animation: footerFlicker 3s ease-in-out infinite;
+      font-size: 0.9rem;
+      color: #0f0;
     }
     
-    @keyframes footerFlicker {
-      0%, 100% { opacity: 0.7; }
-      50% { opacity: 1; }
+    .terminal-output::-webkit-scrollbar {
+      width: 8px;
     }
     
+    .terminal-output::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .terminal-output::-webkit-scrollbar-thumb {
+      background: rgba(102, 126, 234, 0.5);
+      border-radius: 4px;
+    }
+    
+    .terminal-line {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+    
+    .terminal-prompt {
+      color: #667eea;
+    }
+    
+    .terminal-input-line {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.3);
+      border-top: 1px solid rgba(102, 126, 234, 0.3);
+    }
+    
+    .terminal-input {
+      flex: 1;
+      background: none;
+      border: none;
+      color: #0f0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.9rem;
+      outline: none;
+      margin-left: 0.5rem;
+    }
+    
+    .command-result {
+      color: #a0a0b0;
+      margin-top: 0.5rem;
+    }
+    
+    .command-result.success {
+      color: #27c93f;
+    }
+    
+    .command-result.error {
+      color: #ff5f56;
+    }
+    
+    .command-list {
+      color: #667eea;
+      margin-top: 0.5rem;
+    }
+    
+    .terminal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 10000;
+      display: none;
+      backdrop-filter: blur(5px);
+    }
+    
+    .terminal-overlay.active {
+      display: block;
+    }
+
+    .terminal-title-text {
+      color: #667eea;
+      margin-left: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+    }
+
     @media (max-width: 768px) {
-      header h1 { font-size: 2.5rem; letter-spacing: 4px; }
-      h2 { font-size: 2rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .contact-buttons { flex-direction: column; }
-      .btn { width: 100%; justify-content: center; }
-      .about-text { animation: none; white-space: normal; border-right: none; }
+      .terminal-popup {
+        width: 95%;
+        height: 70vh;
+        max-height: 500px;
+      }
+      
+      .terminal-output {
+        font-size: 0.8rem;
+      }
+      
+      .terminal-input {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Custom Cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  
+  <!-- Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+  
+  <!-- Matrix Rain Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+  
+  <!-- Terminal Overlay -->
+  <div class="terminal-overlay" id="terminalOverlay"></div>
+  
+  <!-- Terminal Popup -->
+  <div class="terminal-popup" id="terminalPopup">
+    <div class="terminal-header">
+      <div class="terminal-close-btn" onclick="closeTerminal()"></div>
+      <div class="terminal-dot dot-yellow"></div>
+      <div class="terminal-dot dot-green"></div>
+      <span class="terminal-title-text">cauz@terminal:~$</span>
+    </div>
+    <div class="terminal-output" id="terminalOutput">
+      <div class="terminal-line">
+        <span style="color: #667eea;">╔═══════════════════════════════════════╗</span>
+      </div>
+      <div class="terminal-line">
+        <span style="color: #667eea;">║</span> <span style="color: #0f0;">CAUZ INTERACTIVE TERMINAL v1.0</span>      <span style="color: #667eea;">║</span>
+      </div>
+      <div class="terminal-line">
+        <span style="color: #667eea;">╚═══════════════════════════════════════╝</span>
+      </div>
+      <div class="terminal-line"></div>
+      <div class="terminal-line">Type <span style="color: #27c93f;">help</span> to see available commands.</div>
+      <div class="terminal-line"></div>
+    </div>
+    <div class="terminal-input-line">
+      <span class="terminal-prompt">$</span>
+      <input type="text" class="terminal-input" id="terminalInput" placeholder="Type a command..." autocomplete="off">
+    </div>
+  </div>
+  
+  <!-- Theme Controls -->
+  <div class="theme-controls">
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode">🌓</button>
+    <button class="theme-btn" onclick="toggleMatrix()" title="Toggle Matrix Effect">🟢</button>
+    <button class="theme-btn" onclick="toggleSound()" title="Toggle Sound" id="sound-btn">🔊</button>
+  </div>
+  
   <div class="bg-animation"></div>
   <div class="grid-overlay"></div>
-  <div class="scanline"></div>
   
   <div class="container">
-    <header>
-      <h1>[ CAUZ ]</h1>
-      <p>&lt; FREELANCE_SERVICES /&gt;</p>
+    <div class="terminal-bar">
+      <div class="terminal-left">
+        <div class="terminal-dot dot-red"></div>
+        <div class="terminal-dot dot-yellow"></div>
+        <div class="terminal-dot dot-green"></div>
+        <span class="nav-logo">CAUZ</span>
+      </div>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+      <span class="terminal-title" onclick="openTerminal()" style="cursor: pointer;" title="Click to open terminal">cauz@portfolio:~$</span>
+    </div>
+    
+    <div class="mobile-nav" id="mobileNav">
+      <a href="#home" onclick="toggleMenu()">Home</a>
+      <a href="#about" onclick="toggleMenu()">About</a>
+      <a href="#services" onclick="toggleMenu()">Services</a>
+      <a href="#contact" onclick="toggleMenu()">Contact</a>
+    </div>
+    
+    <header id="home">
+      <h1>CAUZ</h1>
+      <p>&lt;/ FREELANCE SERVICES /&gt;</p>
+      <div class="status-indicator">
+        <div class="status-dot"></div>
+        <span>AVAILABLE FOR HIRE</span>
+      </div>
+      
+      <div class="stats-bar">
+        <div class="stat">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">PROJECTS</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">SATISFACTION</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">24H</div>
+          <div class="stat-label">RESPONSE</div>
+        </div>
+      </div>
     </header>
     
     <main>
-      <section>
-        <h2>&gt; About_Me</h2>
-        <p class="about-text">Hey! I'm a freelancer specializing in Discord management, lead generation, Instagram reels, web development and more. I deliver quality work fast with fair pricing. Let's build something amazing together.</p>
+      <section id="about">
+        <h2>About_Me</h2>
+        <p class="about-text">👋 Hey there! I'm Cauz, your friendly neighborhood freelancer who actually gets stuff done. Whether you need a Discord server, Instagram reels, or a website – I've got you covered. Professional but fun, fast but quality. Let's build something cool together! 🚀</p>
       </section>
       
-      <section>
-        <h2>&gt; Services</h2>
+      <section id="services">
+        <h2>Services</h2>
+        <div class="filter-buttons">
+          <button class="filter-btn active" onclick="filterServices('all')">ALL</button>
+          <button class="filter-btn" onclick="filterServices('creative')">CREATIVE</button>
+          <button class="filter-btn" onclick="filterServices('technical')">TECHNICAL</button>
+          <button class="filter-btn" onclick="filterServices('marketing')">MARKETING</button>
+        </div>
+        
         <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon">🎛️</div>
-            <h3>Discord Server Setup & Moderation</h3>
-            <p>Complete server setup with roles, bots, permissions, and automation. Daily moderation available to keep your community safe and active.</p>
+          <!-- Service Card 1 -->
+          <div class="service-card" data-category="technical">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🎛️</div>
+                <div class="price-tag">$$</div>
+              </div>
+              <h3>Discord Server Setup</h3>
+              <p>Complete server setup with roles, bots, permissions, and automation. Daily moderation included.</p>
+              <div class="card-footer">
+                <span class="tag">SETUP</span>
+                <span class="tag">BOTS</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Custom server structure</li>
+                <li>Role hierarchy & permissions</li>
+                <li>Bot integration & setup</li>
+                <li>Moderation tools</li>
+                <li>Welcome messages & rules</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">📈</div>
-            <h3>Lead Generation</h3>
-            <p>High-quality leads tailored to your industry and location. Verified, formatted, and campaign-ready for immediate use.</p>
+          <!-- Service Card 2 -->
+          <div class="service-card" data-category="marketing">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">📈</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>Lead Generation</h3>
+              <p>High-quality, verified leads tailored to your industry and ready for campaigns.</p>
+              <div class="card-footer">
+                <span class="tag">B2B</span>
+                <span class="tag">VERIFIED</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Industry-specific targeting</li>
+                <li>Email & contact verification</li>
+                <li>LinkedIn profile matching</li>
+                <li>Decision-maker identification</li>
+                <li>CRM-ready format</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">🎬</div>
-            <h3>Instagram Reels Editing</h3>
-            <p>Engaging short-form videos with trending formats, captions, and effects. Perfect for Instagram, TikTok, and YouTube Shorts.</p>
+          <!-- Service Card 3 -->
+          <div class="service-card" data-category="creative">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🎬</div>
+                <div class="price-tag">$$</div>
+              </div>
+              <h3>Instagram Reels Editing</h3>
+              <p>Viral-worthy short videos with trending formats for Instagram, TikTok, and YouTube.</p>
+              <div class="card-footer">
+                <span class="tag">VIRAL</span>
+                <span class="tag">TRENDY</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Trending music & effects</li>
+                <li>Captions & subtitles</li>
+                <li>Color grading</li>
+                <li>Smooth transitions</li>
+                <li>Platform optimization</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">🧠</div>
-            <h3>Social Media Research</h3>
-            <p>Track trends, hashtags, and viral content in your niche to plan high-performing posts and grow your audience.</p>
+          <!-- Service Card 4 -->
+          <div class="service-card" data-category="marketing">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🧠</div>
+                <div class="price-tag">$</div>
+              </div>
+              <h3>Social Media Research</h3>
+              <p>Track trends, hashtags, and viral content in your niche to plan high-performing posts.</p>
+              <div class="card-footer">
+                <span class="tag">TRENDS</span>
+                <span class="tag">ANALYTICS</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Competitor analysis</li>
+                <li>Hashtag research</li>
+                <li>Trend identification</li>
+                <li>Content recommendations</li>
+                <li>Performance insights</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">⭐</div>
-            <h3>Social Media Management</h3>
-            <p>Consistent management across platforms for increased reach, engagement, and follower growth.</p>
+          <!-- Service Card 5 -->
+          <div class="service-card" data-category="marketing">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">⭐</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>Social Media Management</h3>
+              <p>Consistent management across all platforms for increased reach and engagement.</p>
+              <div class="card-footer">
+                <span class="tag">GROWTH</span>
+                <span class="tag">ENGAGEMENT</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Content calendar planning</li>
+                <li>Daily posting & scheduling</li>
+                <li>Community engagement</li>
+                <li>Analytics & reporting</li>
+                <li>Strategy optimization</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">🖼️</div>
-            <h3>Thumbnail & Banner Design</h3>
-            <p>Eye-catching visuals for YouTube, Discord, Instagram and more. Clean designs with quick turnaround.</p>
+          <!-- Service Card 6 -->
+          <div class="service-card" data-category="creative">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🖼️</div>
+                <div class="price-tag">$</div>
+              </div>
+              <h3>Thumbnail & Banner Design</h3>
+              <p>Eye-catching visuals for YouTube, Discord, Instagram and more.</p>
+              <div class="card-footer">
+                <span class="tag">DESIGN</span>
+                <span class="tag">BRANDING</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Custom graphic design</li>
+                <li>Platform optimization</li>
+                <li>Multiple revisions</li>
+                <li>Source files provided</li>
+                <li>Fast turnaround</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">🤖</div>
-            <h3>Custom Discord Bots</h3>
-            <p>Professional custom bots coded for your server needs. Free hosting included for lightweight bots.</p>
+          <!-- Service Card 7 -->
+          <div class="service-card" data-category="technical">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🤖</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>Custom Discord Bots</h3>
+              <p>Professional custom bots coded for your server. Free hosting for lightweight bots!</p>
+              <div class="card-footer">
+                <span class="tag">CODING</span>
+                <span class="tag">HOSTING</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Custom bot development</li>
+                <li>Feature implementation</li>
+                <li>Free hosting (lightweight)</li>
+                <li>Documentation</li>
+                <li>Ongoing support</li>
+              </ul>
+            </div>
           </div>
           
-          <div class="service-card">
-            <div class="service-icon">💻</div>
-            <h3>Web Development</h3>
-            <p>Modern, responsive websites built with HTML, CSS, JavaScript, and React. From landing pages to full web apps.</p>
+          <!-- Service Card 8 -->
+          <div class="service-card" data-category="technical">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">💻</div>
+                <div class="price-tag">$$$$</div>
+              </div>
+              <h3>Web Development</h3>
+              <p>Modern, responsive websites with HTML, CSS, JavaScript, and React.</p>
+              <div class="card-footer">
+                <span class="tag">REACT</span>
+                <span class="tag">RESPONSIVE</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Custom website design</li>
+                <li>Responsive layouts</li>
+                <li>Modern frameworks</li>
+                <li>SEO optimization</li>
+                <li>Performance tuning</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 9 -->
+          <div class="service-card" data-category="creative">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">✍️</div>
+                <div class="price-tag">$$</div>
+              </div>
+              <h3>Content Writing</h3>
+              <p>Engaging blog posts, website copy, and social media content that converts.</p>
+              <div class="card-footer">
+                <span class="tag">SEO</span>
+                <span class="tag">CREATIVE</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>SEO-optimized content</li>
+                <li>Keyword research</li>
+                <li>Compelling copy</li>
+                <li>Multiple revisions</li>
+                <li>Brand voice matching</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 10 -->
+          <div class="service-card" data-category="marketing">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">📧</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>Email Marketing</h3>
+              <p>Design and execute email campaigns that drive engagement and conversions.</p>
+              <div class="card-footer">
+                <span class="tag">AUTOMATION</span>
+                <span class="tag">CONVERSION</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Campaign strategy</li>
+                <li>Email design & copy</li>
+                <li>Automation setup</li>
+                <li>A/B testing</li>
+                <li>Analytics tracking</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 11 -->
+          <div class="service-card" data-category="creative">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🎨</div>
+                <div class="price-tag">$$</div>
+              </div>
+              <h3>Logo & Branding</h3>
+              <p>Memorable logos and cohesive brand identities that stand out.</p>
+              <div class="card-footer">
+                <span class="tag">BRANDING</span>
+                <span class="tag">IDENTITY</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Logo design concepts</li>
+                <li>Brand guidelines</li>
+                <li>Color palette</li>
+                <li>Typography selection</li>
+                <li>Multiple file formats</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 12 -->
+          <div class="service-card" data-category="marketing">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">📊</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>SEO Optimization</h3>
+              <p>Boost search rankings with keyword research and content strategy.</p>
+              <div class="card-footer">
+                <span class="tag">RANKINGS</span>
+                <span class="tag">TRAFFIC</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Technical SEO audit</li>
+                <li>Keyword research</li>
+                <li>On-page optimization</li>
+                <li>Content strategy</li>
+                <li>Monthly reporting</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 13 -->
+          <div class="service-card" data-category="technical">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">⚙️</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>API Integration</h3>
+              <p>Connect your tools and automate workflows seamlessly with APIs and webhooks.</p>
+              <div class="card-footer">
+                <span class="tag">AUTOMATION</span>
+                <span class="tag">EFFICIENCY</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Custom API integration</li>
+                <li>Webhook setup</li>
+                <li>Workflow automation</li>
+                <li>Error handling</li>
+                <li>Documentation</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 14 -->
+          <div class="service-card" data-category="creative">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🎥</div>
+                <div class="price-tag">$$$</div>
+              </div>
+              <h3>Video Editing</h3>
+              <p>Professional video editing for YouTube, marketing, tutorials, and promos.</p>
+              <div class="card-footer">
+                <span class="tag">CINEMATIC</span>
+                <span class="tag">POLISHED</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Professional editing</li>
+                <li>Color correction</li>
+                <li>Audio mixing</li>
+                <li>Motion graphics</li>
+                <li>Multiple formats</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 15 -->
+          <div class="service-card" data-category="technical">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">🛒</div>
+                <div class="price-tag">$$$$</div>
+              </div>
+              <h3>E-commerce Setup</h3>
+              <p>Complete Shopify, WooCommerce, or custom solutions with payment integration.</p>
+              <div class="card-footer">
+                <span class="tag">SHOPIFY</span>
+                <span class="tag">SALES</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Store setup & design</li>
+                <li>Product uploads</li>
+                <li>Payment integration</li>
+                <li>Shipping configuration</li>
+                <li>Training & support</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Service Card 16 -->
+          <div class="service-card" data-category="marketing">
+            <div class="card-front">
+              <div class="service-header">
+                <div class="service-icon">💬</div>
+                <div class="price-tag">$$</div>
+              </div>
+              <h3>Community Management</h3>
+              <p>Build and nurture engaged communities across Discord, Reddit, and more.</p>
+              <div class="card-footer">
+                <span class="tag">ENGAGEMENT</span>
+                <span class="tag">COMMUNITY</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <h4>What's Included:</h4>
+              <ul>
+                <li>Daily moderation</li>
+                <li>Member engagement</li>
+                <li>Event planning</li>
+                <li>Conflict resolution</li>
+                <li>Growth strategies</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
       
-      <section>
+      <section id="contact">
         <div class="cta-section">
-          <h2>&gt; Portfolio</h2>
-          <p>Want to see examples of my work? Send me a message and I'll share my portfolio with you!</p>
-        </div>
-      </section>
-      
-      <section>
-        <h2>&gt; Get_In_Touch</h2>
-        <div class="contact-buttons">
-          <a href="mailto:urcauzz@gmail.com" class="btn btn-primary">
-            <span>📨 Email Me</span>
-          </a>
-          <a href="https://discord.com/users/ur_cauz" class="btn btn-secondary" target="_blank">
-            <span>💬 Discord: ur_cauz</span>
-          </a>
-          <a href="https://github.com/urcauz" class="btn btn-secondary" target="_blank">
-            <span>💻 GitHub</span>
-          </a>
-          <a href="https://discord.gg/na94uFcJPM" class="btn btn-secondary" target="_blank">
-            <span>🌐 Join My Server</span>
-          </a>
+          <h2>Let's_Work_Together</h2>
+          <p>Ready to start your project? Hit me up through any of these channels!</p>
+          
+          <div class="contact-buttons">
+            <a href="mailto:urcauzz@gmail.com" class="btn btn-primary">
+              <span>📨 Email Me</span>
+            </a>
+            <a href="https://discord.com/users/ur_cauz" class="btn btn-secondary" target="_blank">
+              <span>💬 Discord</span>
+            </a>
+            <a href="https://github.com/urcauz" class="btn btn-secondary" target="_blank">
+              <span>💻 GitHub</span>
+            </a>
+            <a href="https://discord.gg/na94uFcJPM" class="btn btn-secondary" target="_blank">
+              <span>🌐 Server</span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
     
     <footer>
-      [ © 2025 CAUZ ] // built_for_quality
+      <p>[ © 2025 CAUZ ]</p>
     </footer>
   </div>
   
@@ -639,10 +731,252 @@
   <script>
     kofiWidgetOverlay.draw('cauz', {
       'type': 'floating-chat',
-      'floating-chat.donateButton.text': 'Support Me',
+      'floating-chat.donateButton.text': 'Support Me ✨',
       'floating-chat.donateButton.background-color': '#667eea',
       'floating-chat.donateButton.text-color': '#fff'
     });
   </script>
 </body>
-</html>
+</html>>
+  <script src="script.js"></script>
+  <script>
+    // Terminal functionality
+    const terminalPopup = document.getElementById('terminalPopup');
+    const terminalOverlay = document.getElementById('terminalOverlay');
+    const terminalInput = document.getElementById('terminalInput');
+    const terminalOutput = document.getElementById('terminalOutput');
+    
+    const commands = {
+      help: {
+        description: 'Show available commands',
+        action: () => {
+          return `<div class="command-list">
+Available commands:
+  <span style="color: #27c93f;">help</span>       - Show this help message
+  <span style="color: #27c93f;">about</span>      - Learn more about me
+  <span style="color: #27c93f;">services</span>   - View my services
+  <span style="color: #27c93f;">contact</span>    - Get my contact info
+  <span style="color: #27c93f;">skills</span>     - See my skillset
+  <span style="color: #27c93f;">projects</span>   - View project stats
+  <span style="color: #27c93f;">social</span>     - My social media links
+  <span style="color: #27c93f;">clear</span>      - Clear terminal
+  <span style="color: #27c93f;">matrix</span>     - Toggle matrix effect
+  <span style="color: #27c93f;">theme</span>      - Toggle light/dark mode
+  <span style="color: #27c93f;">whoami</span>     - Display current user
+</div>`;
+        }
+      },
+      about: {
+        description: 'Learn more about Cauz',
+        action: () => {
+          return `<div class="command-result">
+👋 Hey! I'm Cauz - a freelancer who loves building cool stuff!
+
+I specialize in:
+• Discord server setups & custom bots
+• Web development (HTML, CSS, JS, React)
+• Social media management & content creation
+• Video editing & graphic design
+• Lead generation & marketing
+
+Always available for hire and ready to bring your ideas to life! 🚀
+</div>`;
+        }
+      },
+      services: {
+        description: 'View available services',
+        action: () => {
+          setTimeout(() => {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+          }, 500);
+          return `<div class="command-result success">
+✓ Navigating to services section...
+
+Quick overview:
+• Discord Server Setup ($$)
+• Web Development ($$$$)
+ Reels Editing ($)
+• Social Media Management ($$)
+• Lead Generation ($$)
+...and 11 more services!
+</div>`;
+        }
+      },
+      contact: {
+        description: 'Get contact information',
+        action: () => {
+          setTimeout(() => {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+          }, 500);
+          return `<div class="command-result success">
+✓ Contact information:
+
+📨 Email: urcauzz@gmail.com
+💬 Discord: @ur_cauz
+💻 GitHub: github.com/urcauz
+🌐 Server: discord.gg/na94uFcJPM
+
+Response time: Usually within 24 hours!
+</div>`;
+        }
+      },
+      skills: {
+        description: 'Display skill set',
+        action: () => {
+          return `<div class="command-result">
+💻 Technical Skills:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+HTML/CSS/JS        ████████████ 95%
+React              ██████████░░ 85%
+Discord Bots       ████████████ 98%
+Video Editing      ████████░░░░ 75%
+Graphic Design     ██████████░░ 80%
+SEO/Marketing      ████████░░░░ 70%
+API Integration    ██████████░░ 85%
+</div>`;
+        }
+      },
+      projects: {
+        description: 'View project statistics',
+        action: () => {
+          return `<div class="command-result">
+📊 Project Statistics:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Projects:     50+
+Client Satisfaction: 98%
+Avg Response Time:  24 hours
+Active Since:       2022
+Repeat Clients:     35+
+</div>`;
+        }
+      },
+      social: {
+        description: 'Social media links',
+        action: () => {
+          return `<div class="command-result">
+🔗 Find me on:
+
+• Discord: @ur_cauz
+• GitHub: github.com/urcauz
+• Email: urcauzz@gmail.com
+• Server: discord.gg/na94uFcJPM
+
+Let's connect! 🤝
+</div>`;
+        }
+      },
+      clear: {
+        description: 'Clear terminal screen',
+        action: () => {
+          terminalOutput.innerHTML = `
+            <div class="terminal-line">
+              <span style="color: #667eea;">╔═══════════════════════════════════════╗</span>
+            </div>
+            <div class="terminal-line">
+              <span style="color: #667eea;">║</span> <span style="color: #0f0;">CAUZ INTERACTIVE TERMINAL v1.0</span>      <span style="color: #667eea;">║</span>
+            </div>
+            <div class="terminal-line">
+              <span style="color: #667eea;">╚═══════════════════════════════════════╝</span>
+            </div>
+            <div class="terminal-line"></div>
+            <div class="terminal-line">Type <span style="color: #27c93f;">help</span> to see available commands.</div>
+            <div class="terminal-line"></div>
+          `;
+          return '';
+        }
+      },
+      matrix: {
+        description: 'Toggle matrix effect',
+        action: () => {
+          toggleMatrix();
+          return `<div class="command-result success">✓ Matrix effect toggled!</div>`;
+        }
+      },
+      theme: {
+        description: 'Toggle theme',
+        action: () => {
+          toggleTheme();
+          return `<div class="command-result success">✓ Theme switched!</div>`;
+        }
+      },
+      whoami: {
+        description: 'Display current user',
+        action: () => {
+          return `<div class="command-result">cauz@portfolio</div>`;
+        }
+      }
+    };
+    
+    function openTerminal() {
+      terminalPopup.classList.add('active');
+      terminalOverlay.classList.add('active');
+      terminalInput.focus();
+      playSound();
+    }
+    
+    function closeTerminal() {
+      terminalPopup.classList.remove('active');
+      terminalOverlay.classList.remove('active');
+      playSound();
+    }
+    
+    terminalOverlay.addEventListener('click', closeTerminal);
+    
+    terminalInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const command = terminalInput.value.trim().toLowerCase();
+        terminalInput.value = '';
+        
+        // Add command to output
+        const commandLine = document.createElement('div');
+        commandLine.className = 'terminal-line';
+        commandLine.innerHTML = `<span class="terminal-prompt">$</span> ${command}`;
+        terminalOutput.appendChild(commandLine);
+        
+        // Execute command
+        if (commands[command]) {
+          const result = commands[command].action();
+          if (result) {
+            const resultLine = document.createElement('div');
+            resultLine.className = 'terminal-line';
+            resultLine.innerHTML = result;
+            terminalOutput.appendChild(resultLine);
+          }
+        } else if (command) {
+          const errorLine = document.createElement('div');
+          errorLine.className = 'terminal-line';
+          errorLine.innerHTML = `<div class="command-result error">Command not found: ${command}<br>Type <span style="color: #27c93f;">help</span> for available commands.</div>`;
+          terminalOutput.appendChild(errorLine);
+        }
+        
+        // Add empty line
+        const emptyLine = document.createElement('div');
+        emptyLine.className = 'terminal-line';
+        terminalOutput.appendChild(emptyLine);
+        
+        // Scroll to bottom
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+        
+        playSound();
+      }
+    });
+    
+    // Keyboard shortcut to open terminal (Ctrl+`)
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === '`') {
+        e.preventDefault();
+        if (terminalPopup.classList.contains('active')) {
+          closeTerminal();
+        } else {
+          openTerminal();
+        }
+      }
+      
+      // ESC to close terminal
+      if (e.key === 'Escape' && terminalPopup.classList.contains('active')) {
+        closeTerminal();
+      }
+    });
+  </script>
+  <style>     
+  
