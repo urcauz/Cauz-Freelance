@@ -228,6 +228,7 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
       </nav>
       <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
@@ -238,6 +239,7 @@
       <a href="#home" onclick="toggleMenu()">Home</a>
       <a href="#about" onclick="toggleMenu()">About</a>
       <a href="#services" onclick="toggleMenu()">Services</a>
+      <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
       <a href="#contact" onclick="toggleMenu()">Contact</a>
     </div>
     
@@ -698,35 +700,285 @@
           </div>
         </div>
       </section>
-      
-      <section id="contact">
-        <div class="cta-section">
-          <h2>Let's_Work_Together</h2>
-          <p>Ready to start your project? Hit me up through any of these channels!</p>
-          
-          <div class="contact-buttons">
-            <a href="mailto:urcauzz@gmail.com" class="btn btn-primary">
-              <span>📨 Email Me</span>
-            </a>
-            <a href="https://discord.com/users/ur_cauz" class="btn btn-secondary" target="_blank">
-              <span>💬 Discord</span>
-            </a>
-            <a href="https://github.com/urcauz" class="btn btn-secondary" target="_blank">
-              <span>💻 GitHub</span>
-            </a>
-            <a href="https://discord.gg/na94uFcJPM" class="btn btn-secondary" target="_blank">
-              <span>🌐 Server</span>
-            </a>
+      <!-- Portfolio Section -->
+<section id="portfolio" class="portfolio-section">
+  <h2>My_Work</h2>
+  <p class="section-subtitle">Check out some of my recent projects and client work</p>
+
+  <!-- Filter Buttons -->
+  <div class="portfolio-filters">
+    <button class="filter-btn active" onclick="filterPortfolio('all')">ALL</button>
+    <button class="filter-btn" onclick="filterPortfolio('discord')">DISCORD</button>
+    <button class="filter-btn" onclick="filterPortfolio('web')">WEB DEV</button>
+    <button class="filter-btn" onclick="filterPortfolio('video')">VIDEO</button>
+    <button class="filter-btn" onclick="filterPortfolio('design')">DESIGN</button>
+  </div>
+
+  <!-- Portfolio Grid -->
+  <div class="portfolio-grid" id="portfolioGrid">
+
+    <!-- Project 1 -->
+    <div class="portfolio-card" data-category="discord" onclick="openPortfolioModal(1)">
+      <div class="portfolio-image">
+        <img src="https://i.ibb.co/DfSMJ44X/image.png" alt="Gaming Community Server">
+        <span class="portfolio-badge">FEATURED</span>
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-category">Discord Server</div>
+        <h3 class="portfolio-title">Gaming Community Server</h3>
+        <p class="portfolio-description">
+          Complete server setup with custom roles, moderation bots, and automated welcome system for a 5K+ member gaming community.
+        </p>
+        <div class="portfolio-tags">
+          <span class="tag">DISCORD.PY</span>
+          <span class="tag">AUTOMATION</span>
+          <span class="tag">MODERATION</span>
+        </div>
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-icon">👥</span>
+            <span>5,000+ Members</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">⚡</span>
+            <span>3 Custom Bots</span>
           </div>
         </div>
-      </section>
-    </main>
-    
-    <footer>
-      <p>[ © 2025 CAUZ ]</p>
-    </footer>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="portfolio-card" data-category="web" onclick="openPortfolioModal(2)">
+      <div class="portfolio-image">
+        <img src="https://i.ibb.co/dJKqZ2MR/image.png" alt="E-commerce Storefront">
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-category">Web Development</div>
+        <h3 class="portfolio-title">E-commerce Storefront</h3>
+        <p class="portfolio-description">
+          Modern React-based online store with payment integration, product filtering, and responsive design.
+        </p>
+        <div class="portfolio-tags">
+          <span class="tag">REACT</span>
+          <span class="tag">STRIPE API</span>
+          <span class="tag">RESPONSIVE</span>
+        </div>
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-icon">📈</span>
+            <span>150+ Products</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">⏱️</span>
+            <span>2 Week Build</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="portfolio-card" data-category="video" onclick="openPortfolioModal(3)">
+      <div class="portfolio-image">
+        <img src="https://i.ibb.co/VpBQqgR4/image.png" alt="Instagram Reels Campaign">
+        <span class="portfolio-badge">VIRAL</span>
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-category">Video Editing</div>
+        <h3 class="portfolio-title">Instagram Reels Campaign</h3>
+        <p class="portfolio-description">
+          Series of 15 viral-style reels for a fitness brand that generated 2M+ views and 50K new followers.
+        </p>
+        <div class="portfolio-tags">
+          <span class="tag">PREMIERE PRO</span>
+          <span class="tag">VIRAL TRENDS</span>
+          <span class="tag">SOCIAL MEDIA</span>
+        </div>
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-icon">👀</span>
+            <span>2M+ Views</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">📱</span>
+            <span>15 Reels</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="portfolio-card" data-category="design" onclick="openPortfolioModal(4)">
+      <div class="portfolio-image">
+        <img src="https://i.ibb.co/QvChvsyk/image.png" alt="Brand Identity Package">
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-category">Graphic Design</div>
+        <h3 class="portfolio-title">Brand Identity Package</h3>
+        <p class="portfolio-description">
+          Complete brand identity including logo, color palette, typography, and social media templates for tech startup.
+        </p>
+        <div class="portfolio-tags">
+          <span class="tag">BRANDING</span>
+          <span class="tag">LOGO</span>
+          <span class="tag">STYLE GUIDE</span>
+        </div>
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-icon">🎯</span>
+            <span>Full Rebrand</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">📄</span>
+            <span>20+ Assets</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="portfolio-card" data-category="discord" onclick="openPortfolioModal(5)">
+      <div class="portfolio-image">
+        <img src="https://i.ibb.co/v4f31WDC/image.png" alt="Custom Ticketing Bot">
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-category">Discord Bot</div>
+        <h3 class="portfolio-title">Custom Ticketing Bot</h3>
+        <p class="portfolio-description">
+          Advanced support ticket system with automated responses, role assignment, and logging for customer service server.
+        </p>
+        <div class="portfolio-tags">
+          <span class="tag">NODE.JS</span>
+          <span class="tag">DISCORD.JS</span>
+          <span class="tag">DATABASE</span>
+        </div>
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-icon">🎫</span>
+            <span>500+ Tickets/mo</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">⚙️</span>
+            <span>Custom Features</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
+    <div class="portfolio-card" data-category="web" onclick="openPortfolioModal(6)">
+      <div class="portfolio-image">
+        <img src="https://i.ibb.co/TDPfKxmb/image.png" alt="SaaS Landing Page">
+        <span class="portfolio-badge">NEW</span>
+      </div>
+      <div class="portfolio-content">
+        <div class="portfolio-category">Web Development</div>
+        <h3 class="portfolio-title">SaaS Landing Page</h3>
+        <p class="portfolio-description">
+          High-converting landing page with animations, email capture, and A/B testing setup for B2B software company.
+        </p>
+        <div class="portfolio-tags">
+          <span class="tag">CONVERSION</span>
+          <span class="tag">ANIMATIONS</span>
+          <span class="tag">SEO</span>
+        </div>
+        <div class="portfolio-stats">
+          <div class="stat-item">
+            <span class="stat-icon">📊</span>
+            <span>45% Conv. Rate</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🚀</span>
+            <span>1 Week Build</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</section>
+      
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section">
+    <h2>Client_Feedback</h2>
+    <p class="section-subtitle">What people are saying about working with me</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">Cauz completely transformed our Discord server. The bot he built handles everything automatically and our community engagement went through the roof. 10/10 would hire again!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info">
+            <h4>Marcus T.</h4>
+            <p>Gaming Community Owner</p>
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">The reels Cauz edited for us generated over 2 million views. His understanding of viral content and editing skills are top-notch. Best investment we made for our social media!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info">
+            <h4>Sarah K.</h4>
+            <p>Fitness Brand Manager</p>
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="quote-icon">"</div>
+        <p class="testimonial-text">Fast, professional, and exactly what we needed. Our new website looks amazing and converts way better than our old one. Cauz really knows his stuff!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">J</div>
+          <div class="author-info">
+            <h4>James R.</h4>
+            <p>Tech Startup Founder</p>
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
+  <section id="contact">
+    <div class="cta-section">
+      <h2>Let's_Work_Together</h2>
+      <p>Ready to start your project? Hit me up through any of these channels!</p>
+      
+      <div class="contact-buttons">
+        <a href="mailto:urcauzz@gmail.com" class="btn btn-primary">
+          <span>📨 Email Me</span>
+        </a>
+        <a href="https://discord.com/users/ur_cauz" class="btn btn-secondary" target="_blank">
+          <span>💬 Discord</span>
+        </a>
+        <a href="https://github.com/urcauz" class="btn btn-secondary" target="_blank">
+          <span>💻 GitHub</span>
+        </a>
+        <a href="https://discord.gg/na94uFcJPM" class="btn btn-secondary" target="_blank">
+          <span>🌐 Server</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>[ © 2025 CAUZ ]</p>
+</footer>  
+    </div>
+  <!-- Portfolio Modal - Add this before closing </body> tag -->
+  <div class="modal" id="portfolioModal" onclick="closePortfolioModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closePortfolioModal()">×</button>
+      <div id="portfolioModalContent"></div>
+    </div>
+  </div>
   <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
   <script>
     kofiWidgetOverlay.draw('cauz', {
@@ -736,8 +988,6 @@
       'floating-chat.donateButton.text-color': '#fff'
     });
   </script>
-</body>
-</html>>
   <script src="script.js"></script>
   <script>
     // Terminal functionality
@@ -773,11 +1023,11 @@ Available commands: <br>
 👋 Hey! I'm Cauz - a freelancer who loves building cool stuff! </br>
 </br>
 I specialize in: </br>
-• Discord server setups & custom bots </br>
-• Web development (HTML, CSS, JS, React) </br>
-• Social media management & content creation </br>
-• Video editing & graphic design </br>
-• Lead generation & marketing </br>
+- Discord server setups & custom bots </br>
+- Web development (HTML, CSS, JS, React) </br>
+- Social media management & content creation </br>
+- Video editing & graphic design </br>
+- Lead generation & marketing </br>
 </br>
 Always available for hire and ready to bring your ideas to life! 🚀 </br>
 </div>`;
@@ -793,11 +1043,11 @@ Always available for hire and ready to bring your ideas to life! 🚀 </br>
 ✓ Navigating to services section...
 
 Quick overview: <br>
-• Discord Server Setup ($$) <br>
-• Web Development ($$$$) <br>
-• Reels Editing ($) <br>
-• Social Media Management ($$) <br>
-• Lead Generation ($$) <br>
+- Discord Server Setup ($$) <br>
+- Web Development ($$$$) <br>
+- Reels Editing ($) <br>
+- Social Media Management ($$) <br>
+- Lead Generation ($$) <br>
 ...and 11 more services! <br>
 </div>`;
         }
@@ -856,10 +1106,10 @@ Repeat Clients:     35+ <br>
           return `<div class="command-result">
 🔗 Find me on: <br>
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <br>
-• Discord: @ur_cauz <br>
-• GitHub: github.com/urcauz <br>
-• Email: urcauzz@gmail.com <br>
-• Server: discord.gg/na94uFcJPM <br>
+- Discord: @ur_cauz <br>
+- GitHub: github.com/urcauz <br>
+- Email: urcauzz@gmail.com <br>
+- Server: discord.gg/na94uFcJPM <br>
 
 Let's connect! 🤝
 </div>`;
@@ -978,5 +1228,5 @@ Let's connect! 🤝
       }
     });
   </script>
-  <style>     
-  
+</body>
+</html>
