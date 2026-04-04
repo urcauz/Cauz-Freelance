@@ -9,27 +9,32 @@ function sanitize(input, maxLength = 1000) {
   return String(input || "").trim().slice(0, maxLength);
 }
 
+function discordValue(input, fallback = "N/A") {
+  const text = sanitize(input, 1000);
+  return text || fallback;
+}
+
 async function sendToDiscord(webhookUrl, lead, metadata) {
   const embed = {
     title: "New Portfolio Lead",
     color: 0x00bfa4,
     fields: [
-      { name: "Name", value: lead.name || "N/A", inline: true },
-      { name: "Email", value: lead.email || "N/A", inline: true },
-      { name: "Engagement", value: lead.engagementType || "Not specified", inline: true },
-      { name: "Service", value: lead.service || "Not specified", inline: true },
-      { name: "Budget", value: lead.budget || "Not specified", inline: true },
-      { name: "Timeline", value: lead.timeline || "Not specified", inline: true },
-      { name: "Call Date", value: lead.callDate || "Not specified", inline: true },
-      { name: "Call Time", value: lead.callTime || "Not specified", inline: true },
-      { name: "Timezone", value: lead.timezone || "Not specified", inline: true },
-      { name: "Source", value: lead.source || "Website", inline: true },
+      { name: "Name", value: discordValue(lead.name), inline: true },
+      { name: "Email", value: discordValue(lead.email), inline: true },
+      { name: "Engagement", value: discordValue(lead.engagementType, "Not specified"), inline: true },
+      { name: "Service", value: discordValue(lead.service, "Not specified"), inline: true },
+      { name: "Budget", value: discordValue(lead.budget, "Not specified"), inline: true },
+      { name: "Timeline", value: discordValue(lead.timeline, "Not specified"), inline: true },
+      { name: "Call Date", value: discordValue(lead.callDate, "Not specified"), inline: true },
+      { name: "Call Time", value: discordValue(lead.callTime, "Not specified"), inline: true },
+      { name: "Timezone", value: discordValue(lead.timezone, "Not specified"), inline: true },
+      { name: "Source", value: discordValue(lead.source, "Website"), inline: true },
       {
         name: "Brief",
-        value: lead.brief || "No brief provided"
+        value: discordValue(lead.brief, "No brief provided")
       },
-      { name: "Lead ID", value: metadata.leadId, inline: true },
-      { name: "Submitted At", value: metadata.submittedAt, inline: true }
+      { name: "Lead ID", value: discordValue(metadata.leadId), inline: true },
+      { name: "Submitted At", value: discordValue(metadata.submittedAt), inline: true }
     ]
   };
 
@@ -187,20 +192,44 @@ export async function POST(request) {
       }
     }
 
-    await appendLead({
-      ...lead,
-      ...metadata,
-      status: "new",
-      delivery,
-      channelErrors
-    });
+    let stored = false;
+    let storageError = "";
+    try {
+      await appendLead({
+        ...lead,
+        ...metadata,
+        status: "new",
+        delivery,
+        channelErrors
+      });
+      stored = true;
+    } catch (error) {
+      storageError = error instanceof Error ? error.message : "Unknown storage error";
+      channelErrors.push({
+        channel: "storage",
+        error: storageError
+      });
+    }
+
+    const anyDelivered = delivery.discord || delivery.email;
+    if (!stored && !anyDelivered) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Failed to submit lead.",
+          detail: storageError || "No delivery channel succeeded.",
+          warnings: channelErrors
+        },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(
       {
         ok: true,
         leadId,
         delivery,
-        stored: true,
+        stored,
         warnings: channelErrors
       },
       { status: 200 }
