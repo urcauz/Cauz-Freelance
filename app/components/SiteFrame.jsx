@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { trackEvent } from "lib/analytics";
 
 const navItems = [
@@ -32,10 +32,16 @@ function isTypingTarget(target) {
 export default function SiteFrame({ children }) {
   const pathname = usePathname();
   const [theme, setTheme] = useState("dark");
+  const [themeSwitching, setThemeSwitching] = useState(false);
   const [progress, setProgress] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [cursor, setCursor] = useState({ x: 50, y: 16, enabled: false });
+  const [routeMotion, setRouteMotion] = useState("idle");
+  const routeTimerRef = useRef(null);
+  const themeTimerRef = useRef(null);
+  const hasMountedRef = useRef(false);
+  const hasThemeMountedRef = useRef(false);
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("cauz-theme");
@@ -49,9 +55,53 @@ export default function SiteFrame({ children }) {
   }, [theme]);
 
   useEffect(() => {
+    if (!hasThemeMountedRef.current) {
+      hasThemeMountedRef.current = true;
+      return;
+    }
+
+    setThemeSwitching(true);
+    if (themeTimerRef.current) {
+      window.clearTimeout(themeTimerRef.current);
+    }
+    themeTimerRef.current = window.setTimeout(() => {
+      setThemeSwitching(false);
+      themeTimerRef.current = null;
+    }, 520);
+  }, [theme]);
+
+  useEffect(() => {
     setMenuOpen(false);
     setPaletteOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
+    if (routeTimerRef.current) {
+      window.clearTimeout(routeTimerRef.current);
+    }
+
+    setRouteMotion("entering");
+    routeTimerRef.current = window.setTimeout(() => {
+      setRouteMotion("idle");
+      routeTimerRef.current = null;
+    }, 480);
+  }, [pathname]);
+
+  useEffect(() => {
+    return () => {
+      if (routeTimerRef.current) {
+        window.clearTimeout(routeTimerRef.current);
+      }
+      if (themeTimerRef.current) {
+        window.clearTimeout(themeTimerRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     trackEvent("page_view", { path: pathname });
@@ -130,6 +180,71 @@ export default function SiteFrame({ children }) {
   }, [pathname]);
 
   useEffect(() => {
+    const onClickCapture = (event) => {
+      if (event.defaultPrevented) return;
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!(event.target instanceof Element)) return;
+
+      const anchor = event.target.closest("a");
+      if (!anchor) return;
+      if (anchor.target === "_blank" || anchor.hasAttribute("download")) return;
+
+      const href = anchor.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return;
+
+      let nextUrl;
+      try {
+        nextUrl = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
+
+      if (nextUrl.origin !== window.location.origin) return;
+
+      const current = `${window.location.pathname}${window.location.search}`;
+      const next = `${nextUrl.pathname}${nextUrl.search}`;
+      if (current === next) return;
+
+      setRouteMotion("leaving");
+    };
+
+    document.addEventListener("click", onClickCapture, true);
+    return () => document.removeEventListener("click", onClickCapture, true);
+  }, []);
+
+  useEffect(() => {
+    const clickableSelector = [
+      "button",
+      ".cta-primary",
+      ".cta-ghost",
+      ".inline-link",
+      ".chip",
+      ".slot-button",
+      ".lab-copy",
+      ".live-action",
+      ".route-pill",
+      ".command-item",
+      ".site-nav a",
+      ".mode-switch",
+      ".book-link",
+      ".quick-jump"
+    ].join(", ");
+
+    const onPointerDown = (event) => {
+      if (!(event.target instanceof Element)) return;
+      const clickable = event.target.closest(clickableSelector);
+      if (!clickable) return;
+      clickable.classList.remove("press-pop");
+      void clickable.getBoundingClientRect();
+      clickable.classList.add("press-pop");
+      window.setTimeout(() => clickable.classList.remove("press-pop"), 280);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, []);
+
+  useEffect(() => {
     const onKeyDown = (event) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
@@ -180,7 +295,7 @@ export default function SiteFrame({ children }) {
 
   return (
     <div
-      className={`site-shell ${theme}`}
+      className={`site-shell ${theme} ${themeSwitching ? "theme-animating" : ""}`}
       style={{
         "--cursor-x": `${cursor.x}%`,
         "--cursor-y": `${cursor.y}%`,
@@ -197,8 +312,13 @@ export default function SiteFrame({ children }) {
       <div className="ambient ambient-c" />
       <div className="grid-fx" />
       <div className="noise-fx" />
+      <div className={`theme-transition-layer ${themeSwitching ? "active" : ""}`} aria-hidden />
 
       <div className="scroll-meter" style={{ width: `${progress}%` }} />
+      <div className={`route-transition-overlay ${routeMotion !== "idle" ? "visible" : ""} ${routeMotion}`} aria-hidden>
+        <span className="route-transition-sheen" />
+        <span className="route-transition-pulse" />
+      </div>
 
       <header className="topbar">
         <Link href="/" className="brandmark">
@@ -229,7 +349,7 @@ export default function SiteFrame({ children }) {
           </button>
           <button
             type="button"
-            className="mode-switch"
+            className={`mode-switch ${themeSwitching ? "is-switching" : ""}`}
             onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
             aria-label="Toggle color theme"
           >
@@ -272,11 +392,12 @@ export default function SiteFrame({ children }) {
             <p>Quick Jump</p>
             <h3>Navigate the site (Ctrl/Cmd + K)</h3>
             <div className="command-list">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={isActive(pathname, item.href) ? "command-item active" : "command-item"}
+                  style={{ "--cmd-delay": `${Math.min(index * 42, 180)}ms` }}
                 >
                   <strong>{item.label}</strong>
                   <span>{item.hint}</span>
@@ -287,7 +408,7 @@ export default function SiteFrame({ children }) {
         </div>
       ) : null}
 
-      <main id="main-content" tabIndex={-1}>
+      <main id="main-content" tabIndex={-1} className={`route-main ${routeMotion}`}>
         {children}
       </main>
 

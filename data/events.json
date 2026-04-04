@@ -1,5 +1,291 @@
 [
   {
+    "id": "evt_1775304589637",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T12:09:49.637Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775304589013",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T12:09:49.013Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303592078",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T11:53:12.078Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303584054",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T11:53:04.054Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303544479",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T11:52:24.479Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303540593",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:52:20.593Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303539579",
+    "name": "page_view",
+    "path": "/contact",
+    "properties": {
+      "path": "/contact"
+    },
+    "createdAt": "2026-04-04T11:52:19.579Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303538368",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T11:52:18.368Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303467205",
+    "name": "page_view",
+    "path": "/playground",
+    "properties": {
+      "path": "/playground"
+    },
+    "createdAt": "2026-04-04T11:51:07.205Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303466219",
+    "name": "page_view",
+    "path": "/work",
+    "properties": {
+      "path": "/work"
+    },
+    "createdAt": "2026-04-04T11:51:06.219Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303465159",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:51:05.159Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303405538",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:50:05.538Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303336615",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:48:56.615Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303332643",
+    "name": "page_view",
+    "path": "/contact",
+    "properties": {
+      "path": "/contact"
+    },
+    "createdAt": "2026-04-04T11:48:52.643Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303331151",
+    "name": "page_view",
+    "path": "/work",
+    "properties": {
+      "path": "/work"
+    },
+    "createdAt": "2026-04-04T11:48:51.151Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303329987",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:48:49.987Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303328984",
+    "name": "page_view",
+    "path": "/work",
+    "properties": {
+      "path": "/work"
+    },
+    "createdAt": "2026-04-04T11:48:48.984Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303327781",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T11:48:47.781Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303326433",
+    "name": "page_view",
+    "path": "/playground",
+    "properties": {
+      "path": "/playground"
+    },
+    "createdAt": "2026-04-04T11:48:46.433Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303322579",
+    "name": "page_view",
+    "path": "/work",
+    "properties": {
+      "path": "/work"
+    },
+    "createdAt": "2026-04-04T11:48:42.579Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303318803",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:48:38.803Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303318119",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:48:38.120Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775303161603",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:46:01.603Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775302642569",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:37:22.569Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775302611120",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:36:51.120Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775302542298",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T11:35:42.298Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
     "id": "evt_1775279467078",
     "name": "page_view",
     "path": "/work",
