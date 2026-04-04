@@ -1,0 +1,134 @@
+[
+  {
+    "id": "evt_1775279467078",
+    "name": "page_view",
+    "path": "/work",
+    "properties": {
+      "path": "/work"
+    },
+    "createdAt": "2026-04-04T05:11:07.078Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279459995",
+    "name": "page_view",
+    "path": "/playground",
+    "properties": {
+      "path": "/playground"
+    },
+    "createdAt": "2026-04-04T05:10:59.995Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279456621",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T05:10:56.621Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279440171",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T05:10:40.171Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279419563",
+    "name": "page_view",
+    "path": "/admin",
+    "properties": {
+      "path": "/admin"
+    },
+    "createdAt": "2026-04-04T05:10:19.563Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279383882",
+    "name": "page_view",
+    "path": "/admin",
+    "properties": {
+      "path": "/admin"
+    },
+    "createdAt": "2026-04-04T05:09:43.882Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279375570",
+    "name": "page_view",
+    "path": "/contact",
+    "properties": {
+      "path": "/contact"
+    },
+    "createdAt": "2026-04-04T05:09:35.570Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775279362946",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T05:09:22.946Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775278481801",
+    "name": "page_view",
+    "path": "/",
+    "properties": {
+      "path": "/"
+    },
+    "createdAt": "2026-04-04T04:54:41.802Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775278480037",
+    "name": "page_view",
+    "path": "/contact",
+    "properties": {
+      "path": "/contact"
+    },
+    "createdAt": "2026-04-04T04:54:40.037Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775278461875",
+    "name": "page_view",
+    "path": "/admin",
+    "properties": {
+      "path": "/admin"
+    },
+    "createdAt": "2026-04-04T04:54:21.875Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  },
+  {
+    "id": "evt_1775278452657",
+    "name": "page_view",
+    "path": "/about",
+    "properties": {
+      "path": "/about"
+    },
+    "createdAt": "2026-04-04T04:54:12.658Z",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36",
+    "ip": "::ffff:192.168.0.106"
+  }
+]
