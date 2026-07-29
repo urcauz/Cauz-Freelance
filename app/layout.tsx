@@ -14,17 +14,17 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Cauz | Full Stack Developer",
-  description: "A handcrafted developer portfolio for Cauz, focused on apps, bots, and automation systems.",
+  description: "Cauz is a full stack developer making useful, lively digital experiences.",
   metadataBase: new URL("https://cauz.dev"),
   openGraph: {
     title: "Cauz | Full Stack Developer",
-    description: "Apps, bots, and automation systems built with care.",
+    description: "Useful, lively digital experiences built with care.",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
     title: "Cauz | Full Stack Developer",
-    description: "Apps, bots, and automation systems built with care."
+    description: "Useful, lively digital experiences built with care."
   }
 };
 

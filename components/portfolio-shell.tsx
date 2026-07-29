@@ -1,204 +1,108 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import type { PortfolioData } from "@/lib/portfolio-data";
-import { aboutCopy, contactLinks, footerNote } from "@/lib/portfolio-data";
-import { ProjectCard } from "@/components/project-card";
+import { aboutCopy, footerNote } from "@/lib/portfolio-data";
+import { CustomCursor } from "@/components/custom-cursor";
+import { AutoProjectRail } from "@/components/auto-project-rail";
+import type { SiteContent } from "@/lib/site-content";
+import type { Testimonial } from "@/lib/testimonials";
+import { TestimonialRail } from "@/components/testimonial-rail";
 
-type PortfolioShellProps = {
-  data: PortfolioData;
+type PortfolioShellProps = { data: PortfolioData; content: SiteContent; testimonials: Testimonial[] };
+type PortfolioCopy = { title: string; intro: string };
+
+const defaultCopy: PortfolioCopy = {
+  title: "I make useful things feel like magic.",
+  intro: "Hey, I’m Cauz. I build websites, playful tools, and systems that make a little more room for good ideas."
 };
 
-export function PortfolioShell({ data }: PortfolioShellProps) {
+export function PortfolioShell({ data, content, testimonials }: PortfolioShellProps) {
   const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 105, damping: 28, restDelta: 0.001 });
+  const [copy, setCopy] = useState(defaultCopy);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("cauz-portfolio-copy");
+    if (!saved) return;
+    try { setCopy({ ...defaultCopy, ...JSON.parse(saved) }); } catch { window.localStorage.removeItem("cauz-portfolio-copy"); }
+  }, []);
 
   return (
-    <div className="page-shell portfolio-grid">
-      <aside className="sticky-panel">
-        <header className="stacked-header">
-          <Link href="#top" className="brand-mark" aria-label="Cauz portfolio home">
-            <span className="brand-dot" />
-            <span className="brand-copy">
-              <span className="brand-name">Cauz</span>
-              <span className="brand-subtitle">Full Stack Developer</span>
-            </span>
-          </Link>
+    <main className="studio-page">
+      <CustomCursor />
+      <motion.div className="site-progress" style={{ scaleX: progress }} />
 
-          <p className="sidebar-note">Apps, bots, and automation systems.</p>
-        </header>
-
-        <div className="sidebar-block">
-          <p className="section-kicker">Profile</p>
-          <p className="sidebar-copy">{aboutCopy}</p>
+      <nav className="studio-nav">
+        <Link href="#top" className="studio-logo" aria-label="Cauz home">CAUZ<span>®</span></Link>
+        <div className="studio-nav-links" aria-label="Primary navigation">
+          <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Say hey</a>
         </div>
+        <a href="#contact" className="nav-hello">Let’s build <span>↗</span></a>
+      </nav>
 
-        <div className="sidebar-block">
-          <p className="section-kicker">Focus</p>
-          <div className="sidebar-pills">
-            {["Frontend", "Backend", "Automation", "Data"].map((item) => (
-              <span key={item} className="stack-chip">
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <nav className="sidebar-nav" aria-label="Primary">
-          <a className="nav-link" href="#projects">
-            Selected work
-          </a>
-          <a className="nav-link" href="#about">
-            Stack
-          </a>
-          <a className="nav-link" href="#contact">
-            Contact
-          </a>
-        </nav>
-
-        <div className="sidebar-block sidebar-contact">
-          <p className="section-kicker">Contact</p>
-          <a className="contact-link w-full justify-center" href="mailto:urcauzz@gmail.com">
-            urcauzz@gmail.com
-          </a>
-          <a className="contact-link w-full justify-center" href="https://github.com/Ur-cauz" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-        </div>
-      </aside>
-
-      <main className="content-column">
-        <motion.section
-          id="top"
-          initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-          animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="hero-shell"
+      <section id="top" className="studio-hero">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 28 }} animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={{ duration: .8, ease: [0.22, 1, 0.36, 1] }} className="hero-copy"
         >
-          <div className="section-inner hero-layout">
-            <div className="hero-copy-block">
-              <p className="section-kicker">Independent work, built with care</p>
-              <h1 className="hero-title mt-4">Cauz</h1>
-              <p className="mt-4 text-lg font-medium uppercase tracking-[0.24em] text-white/70">
-                Full Stack Developer
-              </p>
-              <p className="hero-lede mt-6">Building apps, bots, and automation systems.</p>
-              <p className="mt-5 max-w-2xl text-sm leading-7 text-white/60">
-                I like practical interfaces, honest engineering, and small details that make a site feel like
-                someone actually cared while building it.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a className="soft-button-primary" href="#projects">
-                  View projects
-                </a>
-                <a className="soft-button" href="#contact">
-                  Contact
-                </a>
-              </div>
-            </div>
-
-            <div className="hero-card">
-              <div className="hero-card-top">
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.32em] text-white/50">Current focus</p>
-                <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[0.64rem] uppercase tracking-[0.22em] text-white/70">
-                  Hands-on
-                </span>
-              </div>
-              <div className="mt-6 space-y-4">
-                <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.03] p-4">
-                  <p className="text-sm text-white/50">Shipping</p>
-                  <p className="mt-2 text-xl font-semibold tracking-[-0.04em] text-white">
-                    apps that feel personal, not assembled.
-                  </p>
-                </div>
-                <div className="grid gap-3 sm:grid-cols-3">
-                  {data.heroStats.map((stat) => (
-                    <div key={stat.label} className="rounded-[1.2rem] border border-white/10 bg-white/[0.03] p-4">
-                      <p className="text-xl font-semibold text-white">{stat.value}</p>
-                      <p className="mt-2 text-[0.72rem] leading-5 text-white/50">{stat.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <p className="eyebrow"><span /> Independent developer · available for curious work</p>
+          <h1>{copy.title.split(" magic.")[0]} <em>magic.</em></h1>
+          <p className="hero-intro">{copy.intro}</p>
+          <div className="hero-actions">
+            <a href="#work" className="button-ink">See what I’ve made <span>↓</span></a>
+            <a href="#contact" className="text-link">Start a conversation <span>↗</span></a>
           </div>
-        </motion.section>
+        </motion.div>
 
-        <section id="about" className="panel-shell">
-          <div className="section-inner">
-            <div className="section-head-tight">
-              <p className="section-kicker">About</p>
-              <h2 className="panel-title">How I like to build.</h2>
-              <p className="panel-copy max-w-2xl">{aboutCopy}</p>
-            </div>
+        <motion.div initial={reduceMotion ? false : { opacity: 0, rotate: 6 }} animate={reduceMotion ? undefined : { opacity: 1, rotate: 0 }} transition={{ duration: 1, delay: .1 }} className="hero-object" aria-hidden="true">
+          <div className="object-scribble">made<br />with<br />care</div>
+          <div className="object-sphere"><div className="sphere-cut" /></div>
+          <div className="object-window"><b>01</b><span>build<br />play<br />repeat</span></div>
+          <div className="object-star">✦</div>
+          <div className="object-label">web / systems / strange little ideas</div>
+        </motion.div>
+      </section>
 
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-              {data.techGroups.map((group, index) => (
-                <motion.article
-                  key={group.label}
-                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                  whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: index * 0.04 }}
-                  whileHover={reduceMotion ? undefined : { y: -2 }}
-                  className={`stack-group ${index % 2 === 0 ? "md:translate-y-2" : ""} ${index === 2 ? "md:translate-y-5" : ""}`}
-                >
-                  <p className="stack-group-label">{group.label}</p>
-                  <p className="mt-3 text-sm leading-6 text-white/60">{group.note}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {group.items.map((item) => (
-                      <span key={item} className="stack-chip">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </motion.article>
-              ))}
-            </div>
+      <div className="running-line" aria-hidden="true"><div>WEB EXPERIENCES <i>✦</i> USEFUL SYSTEMS <i>✦</i> GOOD INTERNET ENERGY <i>✦</i> WEB EXPERIENCES <i>✦</i> USEFUL SYSTEMS <i>✦</i> GOOD INTERNET ENERGY <i>✦</i></div></div>
+
+      <section id="work" className="work-section">
+        <div className="section-heading">
+          <p className="eyebrow">A few recent bits</p>
+          <h2>Stuff I’ve actually<br /><em>put into the world.</em></h2>
+          <p>I like work with personality — clear enough to use without a manual, interesting enough to remember afterwards.</p>
+        </div>
+        <AutoProjectRail projects={data.projects} />
+      </section>
+
+      <section id="about" className="about-section">
+        <div className="about-sticker">no<br />boring<br />bits</div>
+        <div className="about-big-copy"><p className="eyebrow">How I work</p><h2>I’m into the overlap between <em>good taste</em> and things that just work.</h2></div>
+        <div className="about-details">
+          <p>{aboutCopy}</p>
+          <div className="skill-list">
+            {data.techGroups.map((group, index) => <div key={group.label}><span>0{index + 1}</span><strong>{group.label}</strong><small>{group.items.slice(0, 3).join(" · ")}</small></div>)}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="projects" className="panel-shell">
-          <div className="section-inner">
-            <div className="section-head-tight">
-              <p className="section-kicker">Selected Work</p>
-              <h2 className="panel-title">Projects that stay readable and fast.</h2>
-              <p className="panel-copy max-w-2xl">
-                The layout is intentionally more editorial than grid-heavy so the work feels curated, not dumped
-                into a template.
-              </p>
-            </div>
+      <section className="now-section">
+        <p className="eyebrow">Right now</p>
+        <div><h2>{content.caseStudyTitle}</h2><p>{content.caseStudyCopy}</p></div>
+        <aside><span>Currently</span><p>{content.now}</p></aside>
+      </section>
 
-            <div className="project-stack">
-              {data.projects.map((project, index) => (
-                <ProjectCard key={project.name} project={project} index={index} featured={index === 0} />
-              ))}
-            </div>
-          </div>
-        </section>
+      <TestimonialRail testimonials={testimonials} />
 
-        <section id="contact" className="panel-shell">
-          <div className="section-inner contact-layout">
-            <div>
-              <p className="section-kicker">Contact</p>
-              <h2 className="panel-title">If you want to talk code, systems, or a weird idea worth building, say hello.</h2>
-              <p className="panel-copy mt-3 max-w-2xl">
-                No sales pitch, no pricing page, no agency fluff. Just a simple way to reach me.
-              </p>
-            </div>
-
-            <div className="contact-card">
-              <a className="contact-link" href="mailto:urcauzz@gmail.com">
-                urcauzz@gmail.com
-              </a>
-              <a className="contact-link" href="https://github.com/Ur-cauz" target="_blank" rel="noreferrer">
-                GitHub
-              </a>
-              <p className="contact-footnote">{footerNote}</p>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+      <section id="contact" className="contact-section">
+        <p className="eyebrow">Got something brewing?</p>
+        <h2>Let’s make it<br /><em>really good.</em></h2>
+        <a className="contact-email" href={`mailto:${content.contactEmail}`}>{content.contactEmail} <span>↗</span></a>
+        <div className="contact-footer"><span>{footerNote}</span><a href="https://github.com/Ur-cauz" target="_blank" rel="noreferrer">GitHub ↗</a><span>© {new Date().getFullYear()} Cauz</span></div>
+      </section>
+    </main>
   );
 }

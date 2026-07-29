@@ -10,6 +10,7 @@ export type Project = {
   stack: string[];
   live: string;
   github: string;
+  order?: number;
   offsetClass?: string;
 };
 
@@ -102,6 +103,17 @@ export const projects: Project[] = [
     github: "https://github.com/Ur-cauz/Discord-Bot-For-Freelancer",
     offsetClass: "lg:-translate-y-4"
   },
+
+{
+    name: "CJAM",
+    description:
+      "A compact ESP32 development board designed for 2.4 GHz experimentation, embedded development, RF learning, and wireless security research.",
+    stack: ["C++", "Hardware", "PCB desining", "Creative engineering"],
+    live: "https://github.com/Ur-cauz/CJAM/blob/main/README.md",
+    github: "https://github.com/Ur-cauz/CJAM",
+    offsetClass: "lg:-translate-y-4"
+  },
+
   {
     name: "GTVIWEBPAGE",
     description:
@@ -111,6 +123,8 @@ export const projects: Project[] = [
     github: "https://github.com/Ur-cauz/GTVIWEBPAGE",
     offsetClass: "lg:translate-y-6"
   }
+
+
 ];
 
 export const portfolioData: PortfolioData = {
@@ -124,4 +138,4 @@ export const contactLinks = [
   { label: "GitHub", href: "https://github.com/Ur-cauz" }
 ];
 
-export const footerNote = "Built as a single, hands-on portfolio rather than a pitch deck.";
+export const footerNote = "Man idk why i built this, but here you go. Hope this does the work well. >''< :p";

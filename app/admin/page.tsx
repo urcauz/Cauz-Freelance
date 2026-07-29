@@ -1,12 +1,13 @@
-import { PortfolioShell } from "@/components/portfolio-shell";
-import { portfolioData } from "@/lib/portfolio-data";
+import { AdminDashboard } from "@/components/admin-dashboard";
 import { getProjects } from "@/lib/projects";
 import { getSiteContent } from "@/lib/site-content";
 import { getTestimonials } from "@/lib/testimonials";
 
+export const metadata = { title: "Cauz — Admin" };
+
 export const dynamic = "force-dynamic";
 
-export default async function HomePage() {
+export default async function AdminPage() {
   const [projects, content, testimonials] = await Promise.all([getProjects(), getSiteContent(), getTestimonials()]);
-  return <PortfolioShell data={{ ...portfolioData, projects }} content={content} testimonials={testimonials} />;
+  return <AdminDashboard projects={projects} content={content} testimonials={testimonials} />;
 }
