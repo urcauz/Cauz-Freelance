@@ -80,4 +80,4 @@ export async function createTestimonial(value: unknown) {
   }
 }
 
-export default { getTestimonials, createTestimonial };
+
