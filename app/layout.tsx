@@ -15,7 +15,7 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Cauz | Developer and Electrical Engineering Student",
   description: "pfftttt click on it to view ig >''<",
-  metadataBase: new URL("https://cauz.dev"),
+  metadataBase: new URL("https://cauz.is-a.dev"),
   openGraph: {
     title: "Cauz | Developer and Electrical Engineering Student",
     description: "pfftttt click on it to view ig >''<",
