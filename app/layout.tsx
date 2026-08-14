@@ -19,12 +19,21 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cauz | Full Stack Developer",
     description: "Useful, lively digital experiences built with care.",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "https://i.ibb.co/4RM4G8cD/cauzsfjasdhkashgajkshgjaks.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Cauz — developer and electrical engineering student"
+      }
+    ]
   },
   twitter: {
     card: "summary_large_image",
     title: "Cauz | Full Stack Developer",
-    description: "Useful, lively digital experiences built with care."
+    description: "Useful, lively digital experiences built with care.",
+    images: ["https://i.ibb.co/4RM4G8cD/cauzsfjasdhkashgajkshgjaks.jpg"]
   }
 };
 
