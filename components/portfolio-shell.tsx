@@ -10,6 +10,7 @@ import { AutoProjectRail } from "@/components/auto-project-rail";
 import type { SiteContent } from "@/lib/site-content";
 import type { Testimonial } from "@/lib/testimonials";
 import { TestimonialRail } from "@/components/testimonial-rail";
+import { ContactForm } from "@/components/contact-form";
 
 type PortfolioShellProps = { data: PortfolioData; content: SiteContent; testimonials: Testimonial[] };
 type PortfolioCopy = { title: string; intro: string };
@@ -39,7 +40,7 @@ export function PortfolioShell({ data, content, testimonials }: PortfolioShellPr
       <nav className="studio-nav">
         <Link href="#top" className="studio-logo" aria-label="Cauz home">CAUZ<span>®</span></Link>
         <div className="studio-nav-links" aria-label="Primary navigation">
-          <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Say hey</a>
+          <a href="#work">Work</a><a href="#lab">Lab</a><a href="#about">About</a><a href="#contact">Say hey</a>
         </div>
         <a href="#contact" className="nav-hello">Let’s build <span>↗</span></a>
       </nav>
@@ -49,7 +50,7 @@ export function PortfolioShell({ data, content, testimonials }: PortfolioShellPr
           initial={reduceMotion ? false : { opacity: 0, y: 28 }} animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: .8, ease: [0.22, 1, 0.36, 1] }} className="hero-copy"
         >
-          <p className="eyebrow"><span /> Independent developer · available for curious work</p>
+          <p className="eyebrow"><span /> Developer + electrical engineering student · two years left</p>
           <h1>{copy.title.split(" magic.")[0]} <em>magic.</em></h1>
           <p className="hero-intro">{copy.intro}</p>
           <div className="hero-actions">
@@ -73,9 +74,15 @@ export function PortfolioShell({ data, content, testimonials }: PortfolioShellPr
         <div className="section-heading">
           <p className="eyebrow">A few recent bits</p>
           <h2>Stuff I’ve actually<br /><em>put into the world.</em></h2>
-          <p>I like work with personality — clear enough to use without a manual, interesting enough to remember afterwards.</p>
+          <p>Some of these were client ideas, some were late-night rabbit holes. All of them taught me something I didn’t know before.</p>
         </div>
         <AutoProjectRail projects={data.projects} />
+      </section>
+
+      <section id="lab" className="lab-section">
+        <div className="lab-heading"><p className="eyebrow">Outside the browser</p><h2>I also build the<br /><em>bits underneath.</em></h2></div>
+        <div className="lab-notes"><p>I’m currently finishing an electrical engineering degree. There are two years to go, but I’ve spent a lot of those years learning by making: drawing schematics, routing PCBs, chasing bad connections, and putting digital logic on a breadboard to see what happens.</p><p>That hardware mindset follows me back into software too. I like understanding the whole thing — not just the screen people see.</p></div>
+        <div className="lab-cards"><article><span>01 / CJAM</span><h3>ESP32, RF, and a board I wanted to exist.</h3><p>A compact development board for experimenting with wireless, embedded code, and practical security research.</p></article><article><span>02 / 4-BIT ALU</span><h3>Computing, reduced to wires and decisions.</h3><p>A digital logic project built to get closer to how arithmetic and control really work.</p></article><article><span>IN THE TOOLBOX</span><h3>PCB design · Schematics · Debugging</h3><p>From first diagram to the moment the LEDs finally do what they’re meant to.</p></article></div>
       </section>
 
       <section id="about" className="about-section">
@@ -101,6 +108,7 @@ export function PortfolioShell({ data, content, testimonials }: PortfolioShellPr
         <p className="eyebrow">Got something brewing?</p>
         <h2>Let’s make it<br /><em>really good.</em></h2>
         <a className="contact-email" href={`mailto:${content.contactEmail}`}>{content.contactEmail} <span>↗</span></a>
+        <ContactForm />
         <div className="contact-footer"><span>{footerNote}</span><a href="https://github.com/Ur-cauz" target="_blank" rel="noreferrer">GitHub ↗</a><span>© {new Date().getFullYear()} Cauz</span></div>
       </section>
     </main>

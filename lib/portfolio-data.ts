@@ -21,13 +21,13 @@ export type PortfolioData = {
 };
 
 export const heroStats = [
-  { value: "apps", label: "interfaces that stay clear under pressure" },
-  { value: "bots", label: "automation with a human touch" },
-  { value: "systems", label: "small tools that keep growing cleanly" }
+  { value: "web", label: "things that need to feel good to use" },
+  { value: "hardware", label: "boards, circuits, and a lot of trial and error" },
+  { value: "systems", label: "small tools that make life less annoying" }
 ];
 
 export const aboutCopy =
-  "I build the kind of software I actually enjoy using: direct, fast, and a little imperfect in a way that feels human. Most of the work ends up somewhere between product UI, bot logic, and practical automation.";
+  "I like figuring things out by building them. Some days that means a web app, other days it means staring at a schematic, fixing a stubborn bug, or trying to make a board do exactly what I told it to do. I’m still learning, but I’m very much in the habit of making things real.";
 
 export const techGroups: TechGroup[] = [
   {
@@ -54,6 +54,11 @@ export const techGroups: TechGroup[] = [
     label: "Ops",
     note: "Fast shipping without drama.",
     items: ["Vercel", "GitHub Actions", "Analytics", "DNS", "Perf tuning"]
+  },
+  {
+    label: "Electrical Engineering",
+    note: "From the first rough sketch to a board that actually works.",
+    items: ["PCB design", "Schematics", "Digital logic", "ESP32", "Embedded C/C++", "Circuit debugging"]
   }
 ];
 
@@ -108,10 +113,19 @@ export const projects: Project[] = [
     name: "CJAM",
     description:
       "A compact ESP32 development board designed for 2.4 GHz experimentation, embedded development, RF learning, and wireless security research.",
-    stack: ["C++", "Hardware", "PCB desining", "Creative engineering"],
+    stack: ["C++", "Hardware", "PCB design", "Creative engineering"],
     live: "https://github.com/Ur-cauz/CJAM/blob/main/README.md",
     github: "https://github.com/Ur-cauz/CJAM",
     offsetClass: "lg:-translate-y-4"
+  },
+
+  {
+    name: "4-bit ALU",
+    description:
+      "A hands-on digital-logic build exploring how arithmetic and control work below the software layer — designed, wired, tested, and debugged one signal at a time.",
+    stack: ["Digital logic", "Circuit design", "Hardware", "Engineering"],
+    live: "https://github.com/Ur-cauz/4bitALU",
+    github: "https://github.com/Ur-cauz/4bitALU"
   },
 
   {

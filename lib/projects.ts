@@ -24,7 +24,15 @@ export async function getProjects() {
   const existing = await collection.find({}).sort({ order: 1, _id: 1 }).toArray();
 
   if (existing.length) {
-    return existing.map(({ _id, ...project }) => project);
+    const existingProjects = existing.map(({ _id, ...project }) => project);
+    const existingNames = new Set(existing.map((project) => project.name));
+    const missing = starterProjects.filter((project) => !existingNames.has(project.name));
+    if (missing.length) {
+      const lastOrder = Math.max(...existing.map((project) => project.order ?? -1), -1);
+      await collection.insertMany(missing.map((project, index) => ({ ...project, order: lastOrder + index + 1 })));
+      return [...existingProjects, ...missing.map((project, index) => ({ ...project, order: lastOrder + index + 1 }))];
+    }
+    return existingProjects;
   }
 
   await collection.insertMany(starterProjects.map((project, order) => ({ ...project, order })));
