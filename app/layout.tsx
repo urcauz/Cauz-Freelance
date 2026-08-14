@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://cauz.dev"),
   openGraph: {
     title: "Cauz | Full Stack Developer",
-    description: "Useful, lively digital experiences built with care.",
+    description: "pfftttt click on it to view ig >''<",
     type: "website",
     images: [
       {
