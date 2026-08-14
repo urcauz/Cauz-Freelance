@@ -13,11 +13,11 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cauz | Full Stack Developer",
-  description: "Cauz is a full stack developer making useful, lively digital experiences.",
+  title: "Cauz | Developer and Electrical Engineering Student",
+  description: "pfftttt click on it to view ig >''<",
   metadataBase: new URL("https://cauz.dev"),
   openGraph: {
-    title: "Cauz | Full Stack Developer",
+    title: "Cauz | Developer and Electrical Engineering Student",
     description: "pfftttt click on it to view ig >''<",
     type: "website",
     images: [
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cauz | Full Stack Developer",
-    description: "Useful, lively digital experiences built with care.",
+    title: "Cauz | Developer and Electrical Engineering Student",
+    description: "pfftttt click on it to view ig >''<",
     images: ["https://i.ibb.co/4RM4G8cD/cauzsfjasdhkashgajkshgjaks.jpg"]
   }
 };
